@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <app-page-title title="Timeline Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Timeline">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicTimelineOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Distributed Timeline">
+                <div card-body>
+                    <app-apexchart [getOptions]="distributedTimelineOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Multi Series Timeline">
+                <div card-body>
+                    <app-apexchart [getOptions]="multiSeriesTimelineOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Advanced Timeline">
+                <div card-body>
+                    <app-apexchart [getOptions]="advancedTimelineOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Multiple Series - Group Rows">
+                <div card-body>
+                    <app-apexchart [getOptions]="groupRowsTimelineOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

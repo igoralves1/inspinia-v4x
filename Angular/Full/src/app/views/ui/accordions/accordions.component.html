@@ -1,0 +1,206 @@
+<div class="container-fluid">
+    <app-page-title title="Accordions" subTitle="UI"/>
+</div>
+
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Examples</h4>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted mb-2">
+                        Build vertically collapsing accordions in combination with our Collapse JavaScript plugin.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold"
+                       href="https://getbootstrap.com/docs/5.3/components/accordion/" target="_blank">
+                        Accordions on Bootstrap
+                        <ng-icon name="tablerChevronRight" class="ti ti-chevron-right ms-1"></ng-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Default Accordions">
+                <div card-body ngbAccordion [closeOthers]="true">
+                    @for (item of accordionItems; let i = $index; track $index) {
+                        <div ngbAccordionItem [collapsed]="i !== 0">
+                            <h2 ngbAccordionHeader>
+                                <button ngbAccordionButton>
+                                    {{ item.title }}
+                                </button>
+                            </h2>
+                            <div ngbAccordionCollapse>
+                                <div ngbAccordionBody [innerHTML]="item.description"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Flush Accordion">
+                <div card-body ngbAccordion [closeOthers]="true" class="accordion-flush" id="accordionFlushExample">
+                    @for (item of [].constructor(3); let i = $index; track $index) {
+                        <div ngbAccordionItem [collapsed]="i !== 0">
+                            <h2 ngbAccordionHeader>
+                                <button ngbAccordionButton>
+                                    Accordion Item #{{ i + 1 }}
+                                </button>
+                            </h2>
+                            <div ngbAccordionCollapse>
+                                <div ngbAccordionBody>
+                                    <p class="m-0">Placeholder content for this accordion, which is intended to
+                                        demonstrate the
+                                        <code>.accordion-flush</code> class. This is the first item's accordion body.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-ui-card>
+
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Always Open Accordions">
+                <div card-body ngbAccordion>
+                    @for (item of accordionItems; let i = $index; track $index) {
+                        <div ngbAccordionItem [collapsed]="i !== 0">
+                            <h2 ngbAccordionHeader>
+                                <button ngbAccordionButton>
+                                    {{ item.title }}
+                                </button>
+                            </h2>
+                            <div ngbAccordionCollapse>
+                                <div ngbAccordionBody [innerHTML]="item.description"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Accordion Without Arrow">
+                <div card-body ngbAccordion [closeOthers]="true" class="accordion-arrow-none">
+                    @for (item of accordionItems; let i = $index; track $index) {
+                        <div ngbAccordionItem [collapsed]="i !== 0">
+                            <h2 ngbAccordionHeader>
+                                <button ngbAccordionButton>
+                                    {{ item.title }}
+                                </button>
+                            </h2>
+                            <div ngbAccordionCollapse>
+                                <div ngbAccordionBody [innerHTML]="item.description"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Bordered Accordions">
+                <div card-body ngbAccordion [closeOthers]="true" class="accordion-bordered">
+                    @for (item of accordionItems; let i = $index; track $index) {
+                        <div ngbAccordionItem [collapsed]="i !== 0">
+                            <h2 ngbAccordionHeader>
+                                <button ngbAccordionButton>
+                                    {{ item.title }}
+                                </button>
+                            </h2>
+                            <div ngbAccordionCollapse>
+                                <div ngbAccordionBody [innerHTML]="item.description"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-ui-card>
+
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Custom Icon Accordion">
+                <div card-body ngbAccordion class="accordion accordion-custom-icon accordion-arrow-none"
+                     id="CustomIconaccordionExample">
+                    <div ngbAccordionItem>
+                        <h2 ngbAccordionHeader id="CustomIconheadingOne">
+                            <button ngbAccordionButton>
+                                Accordion item with tabler icons
+                                <ng-icon name="tablerPlus" class="accordion-icon accordion-icon-on "/>
+                                <ng-icon name="tablerMinus" class="accordion-icon accordion-icon-off"/>
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <strong>This is the first item's accordion body.</strong> It is shown by default,
+                                until the collapse
+                                plugin adds the appropriate classes that we use to style each element. These classes
+                                control the overall
+                                appearance, as well as the showing and hiding via CSS transitions. You can modify
+                                any of this with
+                                custom CSS or overriding our default variables. It's also worth noting that just
+                                about any HTML can go
+                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                    <div ngbAccordionItem>
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                Accordion item with lucid icons
+                                <lucide-angular [img]="LucidePlusCircle"
+                                                class="accordion-icon accordion-icon-on avatar-xxs me-n2"/>
+                                <lucide-angular [img]="LucideMinusCircle"
+                                                class="accordion-icon accordion-icon-off avatar-xxs me-n2"/>
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                until the collapse
+                                plugin adds the appropriate classes that we use to style each element. These classes
+                                control the overall
+                                appearance, as well as the showing and hiding via CSS transitions. You can modify
+                                any of this with
+                                custom CSS or overriding our default variables. It's also worth noting that just
+                                about any HTML can go
+                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                    <div ngbAccordionItem>
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                Accordion item with tabler icons
+                                <ng-icon name="tablerArrowDown" class="accordion-icon accordion-icon-on"/>
+                                <ng-icon name="tablerArrowUp" class="accordion-icon accordion-icon-off"/>
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                until the collapse
+                                plugin adds the appropriate classes that we use to style each element. These classes
+                                control the overall
+                                appearance, as well as the showing and hiding via CSS transitions. You can modify
+                                any of this with
+                                custom CSS or overriding our default variables. It's also worth noting that just
+                                about any HTML can go
+                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

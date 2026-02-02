@@ -1,0 +1,149 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Miscellaneous" title="Clipboard" />
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <app-ui-card title="Examples">
+                <div card-body class="table-responsive-sm">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy from Element</h5>
+                                    <p class="text-muted mb-0">Use <code>data-clipboard-target</code> to copy text
+                                        from a specific element.</p>
+                                </td>
+                                <td>
+                                    <p class="text-primary font-bold" #copytext>Click the button to copy this
+                                        promotional text.</p>
+                                    <button class="btn btn-sm btn-primary" (click)="copyFromElement(copytext)"><ng-icon
+                                           name="tablerCopy" class="me-1"/> Copy Text</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Cut from Textarea</h5>
+                                    <p class="text-muted mb-0">Use <code>data-clipboard-action</code> with
+                                        <code>cut</code> to remove and copy content.
+                                    </p>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" #cutArea
+                                        id="cuttext">This content will be cut and removed from this textarea.</textarea>
+                                    <button class="btn btn-sm btn-primary mt-3" (click)="cutFromInput(cutArea)"
+                                        ><ng-icon name="tablerCut" class="me-1"/> Cut
+                                        Content</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy Email Address</h5>
+                                    <p class="text-muted mb-0">Click the button to copy this contact email:</p>
+                                </td>
+                                <td>
+                                    <span  #copyEmail
+                                        class="d-block text-primary fw-bold">support&#64;example.com</span>
+                                    <button class="btn btn-sm btn-primary mt-2" (click)="copyFromElement(copyEmail)">
+                                        <ng-icon name="tablerCopy" class="me-1"/> Copy Email
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Cut Input Value</h5>
+                                    <p class="text-muted mb-0">This cuts the value from a single-line input field.
+                                    </p>
+                                </td>
+                                <td>
+                                    <input type="text" #cutInput class="form-control"
+                                        value="Temporary token: 8GDF-393K-L99Z">
+                                    <button class="btn btn-sm btn-danger mt-2" data-clipboard-action="cut"
+                                       (click)="cutFromInput(cutInput)">
+                                        <ng-icon name="tablerCut" class="me-1"></ng-icon> Cut Token
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy Code Snippet</h5>
+                                    <p class="text-muted mb-0">Copy this snippet by clicking the button:</p>
+                                </td>
+                                <td>
+                                    <pre><code #codeSnippet>npm install clipboard --save</code></pre>
+                                    <button class="btn btn-sm btn-success" (click)="copyFromElement(codeSnippet)">
+                                        <ng-icon name="tablerCopy" class="me-1"></ng-icon> Copy Command
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy from Input Group</h5>
+                                    <p class="text-muted mb-0">Click the copy icon to copy the link here:</p>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" #copyLink
+                                            value="https://example.com/invite?ref=12345" readonly>
+                                        <button class="btn btn-icon btn-secondary" type="button"
+                                            (click)="copyFromElement(copyLink)">
+                                            <ng-icon  name="tablerCopy" class="fs-lg"/>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy Username</h5>
+                                    <p class="text-muted mb-0">Copy a predefined username from a span element.</p>
+                                </td>
+                                <td>
+                                    <span #copyUsername class="d-block text-primary fw-bold">john_doe_92</span>
+                                    <button class="btn btn-sm btn-primary mt-2" (click)="copyFromElement(copyUsername)">
+                                        <ng-icon  name="tablerCopy" class="me-1"/> Copy Username
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy Discount Code</h5>
+                                    <p class="text-muted mb-0">Copy a promotional discount code for checkout.</p>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" #discountCode class="form-control" value="SAVE20NOW"
+                                            readonly>
+                                        <button class="btn btn-icon btn-warning" type="button"
+                                            (click)="copyFromElement(discountCode)">
+                                            <ng-icon  name="tablerCopy" class="fs-lg"/>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Copy HTML Template</h5>
+                                    <p class="text-muted mb-0">Copy a block of HTML code from a &lt;pre&gt; tag.</p>
+                                </td>
+                                <td>
+                                    <pre><code #htmlTemplate>&lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;</code></pre>
+                                    <button class="btn btn-sm btn-info" (click)="copyFromElement(htmlTemplate)">
+                                        <ng-icon  name="tablerCopy" class="me-1"/> Copy HTML
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

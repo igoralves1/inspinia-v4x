@@ -1,0 +1,113 @@
+<div class="container-fluid">
+
+    <app-page-title subTitle="Miscellaneous" title="Tour"/>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="text-center mt-4 mb-5">
+                                    <div class="auth-brand text-center mb-4">
+                                        <a routerLink="/" class="logo-dark">
+                                            <img src="assets/images/logo-black.png" alt="dark logo" height="32">
+                                        </a>
+                                        <a routerLink="/" class="logo-light">
+                                            <img src="assets/images/logo.png" alt="logo" height="32">
+                                        </a>
+                                    </div>
+
+                                    <h5 class="fs-lg mb-2">Powerful & Flexible Admin Panel Template</h5>
+                                    <p class="text-muted fs-sm">
+                                        Our admin panel provides a robust foundation for modern web apps. With support
+                                        for multiple frameworks and over a dozen demo variations, developers can build
+                                        exactly what they need, fast and easily. Customize with ease and enjoy
+                                        consistent UI across projects.
+                                    </p>
+
+
+                                    <div class="d-flex justify-content-center mt-4 flex-wrap gap-2">
+                                        <button id="tourTrigger" class="btn btn-primary" (click)="startTour()">
+                                            <ng-icon name="tablerPlayerPlay" class="me-1"/>
+                                            Start Tour
+                                        </button>
+
+                                        <a [routerLink]="[]" class="btn btn-dark" id="exploreFeatures">
+                                            <ng-icon name="tablerCompass" class="me-1"/>
+                                            Explore Features
+                                        </a>
+
+                                        <a href="https://wrapbootstrap.com/theme/inspinia-multipurpose-admin-dashboard-template-WB0R5L90S?ref=inspinia"
+                                           target="_blank" class="btn btn-danger" id="buyNow"
+                                           data-tg-tour="Ready to supercharge your project? Click here to purchase the template!"
+                                           data-tg-title="Buy Now">
+                                            <ng-icon name="tablerShoppingCart" class="me-1"/>
+                                            Buy Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="container" data-tg-order="3"
+                             data-tg-tour="Learn more about the versatile services and modules we provide to enhance development."
+                             id="core-features">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span class="text-muted rounded-3 d-inline-block">🚀 Empowering your digital
+                                        journey</span>
+                                    <h3 class="mt-3 fw-bold mb-5">Framework
+                                        <mark>Support & Core</mark>
+                                        Features
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                @for (feature of features; track $index) {
+                                    <div class="col-xl-3">
+                                        <div class="card border-0 p-2 card-h-100">
+                                            <div class="card-body pb-0">
+                                                <div class="avatar-xl mb-3">
+                                                <span class="avatar-title text-bg-secondary rounded-circle fs-22"
+                                                >
+                                                    <ng-icon [name]="feature.icon"/>
+                                                </span>
+                                                </div>
+                                                <h4 class="fw-semibold mb-2">{{ feature.title }}</h4>
+                                                <p class="text-muted mb-3">{{ feature.description }}</p>
+                                            </div>
+                                            <div class="card-footer border-0 pt-0">
+                                                <a class="link-primary fw-semibold d-flex align-items-center flex-wrap"
+                                                   href="#">
+                                                    Know more
+                                                    <ng-icon name="tablerArrowRight" class="ms-2"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="text-center my-4">
+                            <button class="btn btn-success" id="thankyou-tour">
+                                <ng-icon name="tablerFileDots" class="me-1"/>
+                                Documentation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

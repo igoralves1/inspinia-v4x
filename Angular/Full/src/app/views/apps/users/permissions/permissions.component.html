@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <app-page-title title="Permissions" subTitle="Users"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+
+            <div class="card">
+                <div class="card-header border-light justify-content-between">
+                    <div class="d-flex gap-2">
+                        <div class="app-search">
+                            <input [(ngModel)]="tableService.searchTerm" type="search" class="form-control"
+                                   placeholder="Search permissions...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                    </div>
+
+                    <div>
+                        <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="8">8</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="15">15</option>
+                            <option [ngValue]="20">20</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+                        <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                        <tr class="text-uppercase fs-xxs">
+                            <th sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">Name</th>
+                            <th>Assign To</th>
+                            <th sortable="date" (sort)="tableService.setSort($event.column, $event.direction)">Created
+                                Date
+                            </th>
+                            <th sortable="users" (sort)="tableService.setSort($event.column, $event.direction)">Users
+                            </th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ((total$ | async)! > 0) {
+                                @for (item of managementData$ | async; track $index) {
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td>
+                                            @for (role of item.roles; track $index) {
+                                                <span class="badge badge-label fs-xxs fw-semibold"
+                                                      [class]="'bg-' + role.variant + '-subtle text-' + role.variant"
+                                                      style="margin-right: 2px;">
+                                              {{ role.label }}
+                                            </span>
+                                            }
+                                        </td>
+                                        <td>{{ item.date }}, <span class="text-muted">{{ item.time }}</span></td>
+                                        <td>{{ item.users }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-light btn-icon btn-sm rounded-circle me-1">
+                                                <ng-icon
+                                                    name="tablerEye" class="fs-lg"/>
+                                            </button>
+                                            <button class="btn btn-light btn-icon btn-sm rounded-circle"
+                                                    (click)="tableService.deleteItem(item)">
+                                                <ng-icon
+                                                    name="tablerTrash" class="fs-lg"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr class="no-results">
+                                    <td colspan="5" class="text-center text-muted py-3">Nothing found.</td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                        <div
+                            class="d-flex justify-content-between pagination-boxed align-items-center">
+                            {{ tableService.showingRange }} permissions
+                            <ngb-pagination
+                                [collectionSize]="(total$ | async)!"
+                                [(page)]="tableService.page"
+                                [pageSize]="tableService.pageSize"
+                            >
+                                <ng-template ngbPaginationPrevious>
+                                    <ng-icon name="tablerChevronLeft"/>
+                                </ng-template>
+                                <ng-template ngbPaginationNext>
+                                    <ng-icon name="tablerChevronRight"/>
+                                </ng-template>
+                            </ngb-pagination>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

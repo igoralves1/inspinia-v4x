@@ -1,0 +1,1122 @@
+<div class="container-fluid">
+    <app-page-title title="Static Tables" subTitle="Tables"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-9">
+            <app-ui-card title="Basic Table">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#overview" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"/>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">Add the base class <code>.table</code> to any <code>&lt;table&gt;</code>, then
+                        extend with our optional modifier classes or custom styles.</p>
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="fs-xs">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products; track $index) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary me-1">Edit</button>
+                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </app-ui-card>
+
+            <app-ui-card title="Custom Table" bodyClass="p-0">
+                <span helper-text class="badge badge-label badge-soft-success fs-xxs">Exclusive</span>
+                <div card-body>
+                    <div class="ps-3 pt-3">
+                        <p class="text-muted">
+                            Add the base classes <code>.table</code> and <code>.table-custom</code> to any
+                            <code>&lt;table&gt;</code> element to apply custom styling, including spacing for the first
+                            and last table cells.
+                        </p>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-custom align-middle mb-0">
+                            <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products; track $index) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Variants of Table">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#variants" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"/>
+                </a>
+                <div card-body>
+                    <p class="text-muted">
+                        Use contextual classes to color tables, table rows or individual cells.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-primary">
+                                <td>Bluetooth Speaker</td>
+                                <td>Audio</td>
+                                <td>$49.00</td>
+                                <td>200</td>
+                                <td>4.6 ★</td>
+                                <td><span class="badge badge-label badge-soft-success">Active</span></td>
+                                <td class="text-center">
+                                    <div class="text-muted" ngbDropdown placement="bottom-end">
+                                        <a href="javascript:void(0)" class="drop-arrow-none fs-xxl link-reset p-0"
+                                           ngbDropdownToggle>
+                                            <ng-icon name="tablerDotsVertical"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEye" class="me-1"/>
+                                                View</a>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEdit" class="me-1"/>
+                                                Edit</a>
+                                            <a href="javascript:void(0);" class="text-danger" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerTrash" class="me-1"/>
+                                                Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leather Wallet</td>
+                                <td>Accessories</td>
+                                <td>$29.99</td>
+                                <td>150</td>
+                                <td class="table-warning">4.3 ★</td>
+                                <td><span class="badge badge-label badge-soft-success">Active</span></td>
+                                <td class="text-center">
+                                    <div class="text-muted" ngbDropdown placement="bottom-end">
+                                        <a href="javascript:void(0)" class="drop-arrow-none fs-xxl link-reset p-0"
+                                           ngbDropdownToggle>
+                                            <ng-icon name="tablerDotsVertical"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEye" class="me-1"/>
+                                                View</a>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEdit" class="me-1"/>
+                                                Edit</a>
+                                            <a href="javascript:void(0);" class="text-danger" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerTrash" class="me-1"/>
+                                                Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Fitness Tracker</td>
+                                <td>Wearables</td>
+                                <td class="table-info">$89.00</td>
+                                <td>60</td>
+                                <td>4.1 ★</td>
+                                <td><span class="badge badge-label badge-soft-warning">Limited Stock</span></td>
+                                <td class="text-center table-light">
+                                    <div class="text-muted" ngbDropdown placement="bottom-end">
+                                        <a href="javascript:void(0)" class="drop-arrow-none fs-xxl link-reset p-0"
+                                           ngbDropdownToggle>
+                                            <ng-icon name="tablerDotsVertical"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEye" class="me-1"/>
+                                                View</a>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEdit" class="me-1"/>
+                                                Edit</a>
+                                            <a href="javascript:void(0);" class="text-danger" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerTrash" class="me-1"/>
+                                                Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4K Monitor</td>
+                                <td>Electronics</td>
+                                <td>$349.00</td>
+                                <td class="table-danger">30</td>
+                                <td>4.8 ★</td>
+                                <td><span class="badge badge-label badge-soft-success">Active</span></td>
+                                <td class="text-center">
+                                    <div class="text-muted" ngbDropdown placement="bottom-end">
+                                        <a href="javascript:void(0)" class="drop-arrow-none fs-xxl link-reset p-0"
+                                           ngbDropdownToggle>
+                                            <ng-icon name="tablerDotsVertical"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEye" class="me-1"/>
+                                                View</a>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEdit" class="me-1"/>
+                                                Edit</a>
+                                            <a href="javascript:void(0);" class="text-danger" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerTrash" class="me-1"/>
+                                                Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-dark">Standing Desk</td>
+                                <td>Furniture</td>
+                                <td>$499.00</td>
+                                <td>10</td>
+                                <td>4.4 ★</td>
+                                <td><span class="badge badge-label badge-soft-info">New</span></td>
+                                <td class="text-center">
+                                    <div class="text-muted" ngbDropdown placement="bottom-end">
+                                        <a href="javascript:void(0)" class="drop-arrow-none fs-xxl link-reset p-0"
+                                           ngbDropdownToggle>
+                                            <ng-icon name="tablerDotsVertical"/>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEye" class="me-1"/>
+                                                View</a>
+                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerEdit" class="me-1"/>
+                                                Edit</a>
+                                            <a href="javascript:void(0);" class="text-danger" ngbDropdownItem>
+                                                <ng-icon
+                                                    name="tablerTrash" class="me-1"/>
+                                                Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+
+            <app-ui-card title="Striped Rows">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#striped-rows" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+                <div card-body>
+                    <p class="text-muted">
+                        Use <code>.table-striped</code> to add zebra-striping to any table row within the
+                        <code>&lt;tbody&gt;</code>.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+
+            <app-ui-card title="Striped Columns">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#striped-columns" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Use <code>.table-striped-columns</code> to add zebra-striping to any table column.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped-columns align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Hoverable Rows">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#hoverable-rows" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Add <code>.table-hover</code> to enable a hover state on table rows within a
+                        <code>&lt;tbody&gt;</code>
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Active Tables">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#active-tables" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline  link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">Highlight a table row or cell by adding a <code>.table-active</code> class.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; let i = $index) {
+                                    <tr
+                                        [class.table-active]="i===0">
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Bordered Tables">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#bordered-tables" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Add <code>.table-bordered</code> for borders on all sides of the table and cells.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Tables without Borders">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#tables-without-borders"
+                   target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Add <code>.table-borderless</code> for a table without borders.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Small Tables">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#small-tables" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Add <code>.table-sm</code> to make any <code>.table</code> more compact by cutting all cell
+                        <code>padding</code> in half.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Table Group Dividers">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#table-group-dividers"
+                   target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Add a thicker border, darker between table groups—<code>&lt;thead&gt;</code>,
+                        <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code>—with
+                        <code>.table-group-divider</code>. Customize the color by changing the
+                        <code>border-top-color</code> (which we don’t currently provide a utility class for at this
+                        time).
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Nesting">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#nesting" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+                <div card-body>
+                    <p class="text-muted">
+                        Border styles, active styles, and table variants are not inherited by nested tables.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <ng-container>
+                                        <tr>
+                                            <td>{{ product.name }}</td>
+                                            <td>{{ product.category }}</td>
+                                            <td>${{ product.price.toFixed(2) }}</td>
+                                            <td>{{ product.stock }}</td>
+                                            <td>{{ product.rating.toFixed(1) }} ★</td>
+                                            <td>
+                                            <span class="badge badge-label"
+                                                  [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                                {{ product.status }}
+                                            </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <div ngbDropdown placement="left-top" class="text-muted">
+                                                    <a href="javascript:void(0)" ngbDropdownToggle
+                                                       class="drop-arrow-none fs-xxl link-reset p-0"
+                                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <ng-icon name="tablerDotsVertical"/>
+                                                    </a>
+                                                    <div ngbDropdownMenu class="dropdown-menu-end">
+                                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                            <ng-icon
+                                                                name="tablerEye" class="me-1"/>
+                                                            View</a>
+                                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                            <ng-icon
+                                                                name="tablerEdit" class="me-1"/>
+                                                            Edit</a>
+                                                        <a href="javascript:void(0);"
+                                                           class="dropdown-item text-danger">
+                                                            <ng-icon name="tablerTrash"
+                                                                     class="me-1"></ng-icon>
+                                                            Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        @if (product.children) {
+                                            <tr>
+                                                <td colspan="7" class="p-3">
+                                                    <table class="table table-sm mb-0">
+                                                        <thead class="align-middle thead-sm">
+                                                        <tr class="text-uppercase fs-xxs">
+                                                            <th>Variant</th>
+                                                            <th>Color</th>
+                                                            <th>SKU</th>
+                                                            <th>Stock</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @for (item of product.children; track $index; ) {
+                                                                <tr>
+                                                                    <td>{{ item.variant }}</td>
+                                                                    <td>{{ item.color }}</td>
+                                                                    <td>{{ item.sku }}</td>
+                                                                    <td>{{ item.stock }}</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </ng-container>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Table Head">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#table-head" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        Similar to tables and dark tables, use the modifier classes <code>.table-light</code> or
+                        <code>.table-dark</code> to make <code>&lt;thead&gt;</code>s appear light or dark gray.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-custom align-middle mb-0">
+                            <thead class="align-middle table-dark">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Captions">
+                <a helper-text href="https://getbootstrap.com/docs/5.3/content/tables/#captions" target="_blank"
+                   class="icon-link icon-link-hover link-secondary link-underline link-underline-opacity-25 fw-semibold">View
+                    Docs
+                    <ng-icon name="tablerArrowRight" class="bi fs-lg"></ng-icon>
+                </a>
+
+                <div card-body>
+                    <p class="text-muted">
+                        A <code>&lt;caption&gt;</code> functions like a heading for a table. It helps users with screen
+                        readers to find a table and understand what it’s about and decide if they want to read it.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <caption>List of Ecommerce Products</caption>
+                            <thead class="align-middle thead-sm">
+                            <tr class="text-uppercase fs-xxs">
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products.slice(0, 3); track $index; ) {
+                                    <tr>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>${{ product.price.toFixed(2) }}</td>
+                                        <td>{{ product.stock }}</td>
+                                        <td>{{ product.rating.toFixed(1) }} ★</td>
+                                        <td>
+                                        <span class="badge badge-label"
+                                              [class]="product.status === 'Active' ? 'badge-soft-success' : product.status === 'New' ? 'badge-soft-info' : 'badge-soft-warning'">
+                                            {{ product.status }}
+                                        </span>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <div ngbDropdown placement="left-top" class="text-muted">
+                                                <a href="javascript:void(0)" ngbDropdownToggle
+                                                   class="drop-arrow-none fs-xxl link-reset p-0"
+                                                   data-bs-toggle="dropdown"
+                                                   aria-expanded="false">
+                                                    <ng-icon name="tablerDotsVertical"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEye" class="me-1"/>
+                                                        View</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                        <ng-icon
+                                                            name="tablerEdit" class="me-1"/>
+                                                        Edit</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-danger">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="me-1"></ng-icon>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </app-ui-card>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <app-page-title title="Heatmap Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Heatmap - Single Series">
+                <div card-body>
+                    <app-apexchart [getOptions]="singleSeriesHeatmapChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Multiple Series">
+                <div card-body>
+                    <app-apexchart [getOptions]="multipleSeriesHeatmapChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Heatmap - Color Range">
+                <div card-body>
+                    <app-apexchart [getOptions]="colorRangeHeatmapChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Heatmap - Range without Shades">
+                <div card-body>
+                    <app-apexchart [getOptions]="rangeWithoutShadesHeatmapChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,194 @@
+<div class="container-fluid">
+    <app-page-title title="Clients" subTitle="Apps"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="card">
+                <div class="card-header border-light justify-content-between">
+                    <div class="d-flex gap-2">
+                        <div class="app-search">
+                            <input [(ngModel)]="tableService.searchTerm" type="text" class="form-control"
+                                   placeholder="Search clients...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                        @if (hasSelection) {
+                            <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+                        }
+
+                        <button type="submit" class="btn btn-purple rounded-circle btn-icon">
+                            <ng-icon
+                                name="tablerPlus" class="fs-lg"/>
+                        </button>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="me-2 fw-semibold">Filter By:</span>
+                        <div class="app-search">
+                            <select [(ngModel)]="filterByCountry"
+                                    (ngModelChange)="tableService.setFilter('countryName', filterByCountry)"
+                                    class="form-select form-control my-1 my-md-0">
+                                <option value="All">Country</option>
+                                <option value="US">USA</option>
+                                <option value="UK">UK</option>
+                                <option value="AU">Australia</option>
+                                tab
+                                <option value="DE">Germany</option>
+                                <option value="IN">India</option>
+                            </select>
+                            <lucide-angular [img]="LucideGlobe" class="app-search-icon text-muted"/>
+                        </div>
+
+
+                        <div class="app-search">
+                            <select [(ngModel)]="filterProjectType"
+                                    (ngModelChange)="tableService.setFilter('type', filterProjectType)"
+                                    class="form-select form-control my-1 my-md-0">
+                                <option value="All">Project Type</option>
+                                <option value="Project">Project</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Retainer">Retainer</option>
+                                <option value="Dashboard">Dashboard</option>
+                            </select>
+                            <lucide-angular [img]="LucideLayout" class="app-search-icon text-muted"/>
+                        </div>
+
+
+                        <div>
+                            <select [(ngModel)]="tableService.pageSize" data-table-set-rows-per-page
+                                    class="form-select form-control my-1 my-md-0">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="8">8</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="15">15</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+                        <thead class="bg-light bg-opacity-25 thead-sm">
+                        <tr class="text-uppercase fs-xxs">
+                            <th scope="col" style="width: 1%;">
+                                <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                                       class="form-check-input form-check-input-light fs-14 mt-0"
+                                       type="checkbox" id="checkAll" value="option">
+                            </th>
+                            <th sortable="name"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Clients Name
+                            </th>
+                            <th sortable="phone"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Phone
+                            </th>
+                            <th sortable="countryName"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Country
+                            </th>
+                            <th sortable="enrollDate"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Enrolled
+                            </th>
+                            <th sortable="type"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Type
+                            </th>
+                            <th sortable="title"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Job Title
+                            </th>
+                            <th sortable="status"
+                                (sort)="tableService.setSort($event.column, $event.direction)">Status
+                            </th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ((total$ | async)! > 0) {
+                                @for (client of records$ | async; track $index) {
+                                    <tr>
+                                        <td><input type="checkbox"    class="form-check-input form-check-input-light fs-14 mt-0"
+                                                   [(ngModel)]="client.selected"
+                                                   (change)="toggleSingleSelection()"/></td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar avatar-sm">
+                                                    <img [src]="client.avatar" [alt]="client.name"
+                                                         class="img-fluid rounded-circle"/>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0 fs-base">
+                                                        <a routerLink="/pages/profile"
+                                                           class="link-reset">{{ client.name }}</a>
+                                                    </h5>
+                                                    <p class="text-muted fs-xs mb-0">{{ client.email }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ client.phone }}</td>
+                                        <td>
+                                            <span class="badge p-1 text-bg-light fs-sm">
+                                              <img [src]="client.flag" class="rounded-circle me-1" height="12"/>
+                                                {{ client.countryName }}
+                                            </span>
+                                        </td>
+                                        <td>{{ client.enrollDate }}</td>
+                                        <td>{{ client.type }}</td>
+                                        <td>{{ client.title }}</td>
+                                        <td>
+                            <span
+                                class="badge badge-label"
+                                [class]="client.status === 'pending' ?
+                                'bg-warning-subtle text-warning': client.status === 'inactive' ?
+                                'bg-danger-subtle text-danger':
+                                'bg-success-subtle text-success'
+                              "
+                            >
+                              {{ toTitleCase(client.status) }}
+                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                                <a [routerLink]="[]" class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEye" class="fs-lg"/>
+                                                </a>
+                                                <a [routerLink]="[]" class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEdit" class="fs-lg"/>
+                                                </a>
+                                                <button class="btn btn-light btn-icon btn-sm rounded-circle"
+                                                        (click)="tableService.deleteItem(client)">
+                                                    <ng-icon name="tablerTrash" class="fs-lg"/>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr class="no-results">
+                                    <td colspan="11" class="text-center text-muted py-3">Nothing found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                        <div
+                            class="pagination pagination-boxed mb-0 justify-content-between align-items-center">
+                            {{ tableService.showingRange }} clients
+                            <ngb-pagination
+                                [collectionSize]="(total$ | async)!"
+                                [(page)]="tableService.page"
+                                [pageSize]="tableService.pageSize"
+                            >
+                                <ng-template ngbPaginationPrevious>
+                                    <ng-icon name="tablerChevronLeft"/>
+                                </ng-template>
+                                <ng-template ngbPaginationNext>
+                                    <ng-icon name="tablerChevronRight"/>
+                                </ng-template>
+                            </ngb-pagination>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

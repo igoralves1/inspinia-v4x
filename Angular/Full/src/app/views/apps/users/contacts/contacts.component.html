@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <app-page-title title="Contacts" subTitle="Apps"/>
+
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <form class="bg-light-subtle rounded border p-3">
+
+                <div class="row gap-3">
+                    <div class="col-lg-4">
+                        <div class="app-search">
+                            <input type="text" class="form-control" placeholder="Search contact name...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <span class="me-2 fw-semibold">Filter By:</span>
+
+                            <div class="app-search">
+                                <select class="form-select form-control my-1 my-md-0">
+                                    <option selected>Designation</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="Designer">Designer</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Support">Support</option>
+                                </select>
+                                <lucide-angular [img]="LucideUserCheck" class="app-search-icon text-muted"/>
+                            </div>
+
+                            <div class="app-search">
+                                <select class="form-select form-control my-1 my-md-0">
+                                    <option selected>Location</option>
+                                    <option value="USA">USA</option>
+                                    <option value="UK">UK</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="India">India</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                                <lucide-angular [img]="LucideMapPin"  class="app-search-icon text-muted"/>
+                            </div>
+
+                            <div class="app-search">
+                                <select class="form-select form-control my-1 my-md-0">
+                                    <option selected>Department</option>
+                                    <option value="UI/UX">UI/UX</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="HR">HR</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Finance">Finance</option>
+                                </select>
+                                <lucide-angular [img]="LucideLayers" class="app-search-icon text-muted"/>
+                            </div>
+
+                            <button type="submit" class="btn btn-secondary">Apply</button>
+
+                            <div role="group" aria-label="Layout toggle button group" class="ms-auto flex-shrink-0">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked>
+                                <label class="btn btn-soft-primary btn-icon me-1" for="btnradio1">
+                                    <lucide-angular [img]="LucideLayoutGrid" class="fs-lg"/>
+                                </label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+                                <label class="btn btn-soft-primary btn-icon" for="btnradio2">
+                                    <lucide-angular [img]="LucideList" class="fs-lg"/>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        @for ( contact of contacts; track $index) {
+        <div class="col-md-6 col-xxl-3">
+           <app-contact-card [contact]="contact"/>
+        </div>
+        }
+    </div>
+
+    <ul class="pagination pagination-rounded pagination-boxed justify-content-center mb-3">
+        <ngb-pagination [collectionSize]="50" [page]="2">
+            <ng-template ngbPaginationPrevious><ng-icon name="tablerChevronLeft"/></ng-template>
+            <ng-template ngbPaginationNext><ng-icon name="tablerChevronRight"/></ng-template>
+        </ngb-pagination>
+
+    </ul>
+
+</div>

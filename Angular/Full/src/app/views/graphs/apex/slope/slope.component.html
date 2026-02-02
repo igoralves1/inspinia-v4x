@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <app-page-title title="Slope Apexcharts" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Slope">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicSlopeChart"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Multi Slope">
+                <div card-body>
+                    <app-apexchart [getOptions]="multiSlopeChart"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

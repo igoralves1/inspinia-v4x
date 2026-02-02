@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <app-page-title title="ApexSankey" subTitle="Charts"/>
+
+    @for (tree of ['right-to-left', 'bottom-tree', 'top-tree', 'collapse-expand']; track $index) {
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{ tree.replace('-', ' ') | titlecase }}</h4>
+            </div>
+            <div class="card-body">
+                <div id="{{ tree }}" style="height: 400px; width: 100%; min-width: 100%; margin: 0 auto;"></div>
+            </div>
+        </div>
+    }
+</div>

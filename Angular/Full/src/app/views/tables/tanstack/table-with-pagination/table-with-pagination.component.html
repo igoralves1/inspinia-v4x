@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <app-page-title title="Tanstack Table With Pagination" subTitle="Tables"/>
+
+    <div class="row">
+        <div class="col-12">
+            <app-ui-card title="Table with Search" bodyClass="p-0">
+                <ng-content card-body>
+                    <div class="card-header justify-content-between">
+                        <div class="app-search">
+                            <input type="search" class="form-control"
+                                   (input)="table().setGlobalFilter($any($event.target).value)"
+                                   placeholder="Search product name...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                        <div>
+                            <select
+                                class="form-select form-control my-1 my-md-0"
+                                [ngModel]="table.getState().pagination.pageSize"
+                                (ngModelChange)="setPageSize($event)">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="15">15</option>
+                                <option [ngValue]="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+                    <app-tanstack-table [table]="table" [deleteUser]="deleteUser"></app-tanstack-table>
+                    <div class="card-footer border-0">
+                        <app-table-pagination
+                            [totalItems]="table.getFilteredRowModel().rows.length"
+                            [start]="table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1"
+                            [end]="Math.min(((table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize > table.getFilteredRowModel().rows.length
+         ? table.getFilteredRowModel().rows.length
+         : (table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize))"
+                            [itemsName]="'companies'"
+                            (previousPage)="this.table.previousPage();"
+                            [canPreviousPage]="table.getCanPreviousPage()"
+                            [pageCount]="table.getPageCount()"
+                            [pageIndex]="table.getState().pagination.pageIndex"
+                            (setPageIndex)="table.setPageIndex($event)"
+                            (nextPage)="this.table.nextPage()"
+                            [showInfo]="true"
+                            [canNextPage]="table.getCanNextPage()"
+                        ></app-table-pagination>
+
+                    </div>
+
+                </ng-content>
+            </app-ui-card>
+        </div>
+    </div>
+</div>
+

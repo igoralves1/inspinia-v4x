@@ -1,0 +1,193 @@
+<div class="container-fluid">
+    <app-page-title title="Alerts" subTitle="UI"/>
+</div>
+<div class="container-xl">
+    <div class="row">
+        <div class="col-xl-12">
+            <app-ui-card title="Examples">
+                <div card-body>
+                    <p class="text-muted mb-2">
+                        Provide contextual feedback messages for typical user actions with the handful of available and
+                        flexible alert messages.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold" href="https://getbootstrap.com/docs/5.3/components/alerts/"
+                       target="_blank">
+                        Alerts on Bootstrap
+                        <ng-icon name="tablerChevronRight" class="ms-1"></ng-icon>
+                    </a>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Default Alert">
+                <div card-body>
+                    @for (alert of alertData; track $index) {
+                        <ngb-alert [dismissible]="false" [type]="alert.type">{{ alert.message }}
+                        </ngb-alert>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Dismissing Alert with Solid Colors">
+                <div card-body>
+                    @for (alert of alertData; track $index) {
+                        <ngb-alert (closed)="close(alert)" [type]="alert.type"
+                                   class="text-bg-{{alert.type}}">{{ alert.message }}
+                        </ngb-alert>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Link Color">
+                <div card-body>
+                    @for (item of linkAlert; track $index) {
+                        <ngb-alert [type]="item.variant" [innerHtml]="item.content"
+                                   role="alert"></ngb-alert>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Additional Content">
+                <div card-body>
+                    <ngb-alert [dismissible]="false" type="warning" class="p-3" role="alert">
+                        <h4 class="alert-heading">Great job!</h4>
+                        <p>You’ve successfully read this important alert message. The text is intentionally a bit longer
+                            to demonstrate how spacing behaves in this kind of layout.</p>
+                        <hr class="border-success border-opacity-25">
+                        <p class="mb-0">Use margin utilities to keep your content clean and organized.</p>
+                    </ngb-alert>
+
+                    <ngb-alert [dismissible]="false" type="secondary" class="p-3 d-flex" role="alert">
+                        <ng-icon name="tablerAlarmAverage" class="fs-1 me-2"></ng-icon>
+                        <div>
+                            <h4 class="alert-heading">Heads up!</h4>
+                            <p>This alert message gives additional information with a longer message to show content
+                                spacing within an alert.</p>
+                            <hr class="border-secondary border-opacity-25">
+                            <p class="mb-0">Apply spacing classes wisely to maintain structure and clarity.</p>
+                        </div>
+                    </ngb-alert>
+
+                    <ngb-alert [dismissible]="false" [type]="'purple'" class="d-flex p-3 mb-0" role="alert">
+                        <ng-icon name="tablerPhoneRinging" class="fs-1 me-2"></ng-icon>
+                        <div>
+                            <h4 class="alert-heading">Notice!</h4>
+                            <p>You’ve just read through a primary alert message. The extra length helps show how well
+                                the layout handles content spacing.</p>
+                            <button type="button" class="btn btn-primary btn-sm">Got it</button>
+                        </div>
+                    </ngb-alert>
+                </div>
+
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card [title]="'Custom Alerts'">
+                <div card-body>
+
+                    @if (showAlerts.primary) {
+                        <ngb-alert type="primary" class="border border-primary mb-3"
+                                   [dismissible]="true" (click)="showAlerts.primary = false" role="alert">
+                            A primary alert with a full border!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.secondary) {
+                        <ngb-alert type="secondary"
+                                   class="alert-bordered border-start border-secondary mb-3" [dismissible]="true"
+                                   (click)="showAlerts.secondary = false" role="alert">
+                            A secondary alert with a left border only!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.dark) {
+                        <ngb-alert type="dark"
+                                   class="alert-bordered border-bottom border-dark mb-3"
+                                   [dismissible]="true" (click)="showAlerts.dark = false" role="alert">
+                            A dark alert with a bottom border!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.purple) {
+                        <ngb-alert type="purple"
+                                   class="border-2 border border-dashed border-purple mb-3" [dismissible]="true"
+                                   (click)="showAlerts.purple = false" role="alert">
+                            A purple alert with a dashed border!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.danger) {
+                        <ngb-alert type="danger" class="border-2 border-danger mb-3"
+                                   [dismissible]="true" (click)="showAlerts.danger = false" role="alert">
+                            A danger alert with a thick border!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.warning) {
+                        <ngb-alert type="warning"
+                                   class="d-flex align-items-center justify-content-between mb-3" [dismissible]="false"
+                                   role="alert">
+                            <div>A warning alert with a custom close button!</div>
+                            <button type="button" (click)="showAlerts.warning = false"
+                                    class="btn btn-sm btn-warning btn-icon rounded-circle">
+                                <ng-icon name="tablerX" class="fs-lg"></ng-icon>
+                            </button>
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.info) {
+                        <ngb-alert type="info" class="d-flex align-items-center gap-2 mb-3"
+                                   [dismissible]="true" (click)="showAlerts.info = false" role="alert">
+                            <ng-icon name="tablerAlertOctagon" class="fs-xl"></ng-icon>
+                            An info alert with a custom icon!
+                        </ngb-alert>
+                    }
+
+                    @if (showAlerts.light) {
+                        <ngb-alert type="light" [dismissible]="false"
+                                   class="border-2 d-flex align-items-center p-3 mb-0" role="alert">
+                            <ng-icon name="tablerPhoneRinging" class="text-success fs-2 me-3"></ng-icon>
+                            <div>
+                                <h4 class="alert-heading">Notice!</h4>
+                                <p class="m-0">
+                                    You’ve just read through a primary alert message. The extra length helps show how
+                                    well
+                                    the layout handles content spacing.
+                                </p>
+                            </div>
+                        </ngb-alert>
+                    }
+                </div>
+
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Live Alert">
+                <div card-body>
+                    @for (alert of alerts; track $index) {
+                        <ngb-alert [type]="'success'" (close)="removeAlert(alert.id)">Nice, you
+                            triggered
+                            this
+                            alert message!
+                        </ngb-alert>
+                    }
+
+                    <button type="button" (click)="triggerAlert()" class="btn btn-primary" id="liveAlertBtn">Show live
+                        alert
+                    </button>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>

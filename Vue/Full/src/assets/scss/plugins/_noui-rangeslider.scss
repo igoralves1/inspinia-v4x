@@ -1,0 +1,194 @@
+//
+// _noUiRangeSlider.scss
+//
+
+.vue-slider-rail {
+    box-shadow: none !important;
+    background-color: var(--#{$prefix}light) !important;
+    border: none !important;
+}
+
+.vue-slider-dot-handle {
+    background: var(--#{$prefix}secondary-bg) !important;
+    box-shadow: var(--#{$prefix}box-shadow-inset) !important;
+    border: 1px solid var(--#{$prefix}border-color) !important;
+}
+
+.vue-slider-process {
+    background: var(--#{$prefix}primary) !important;
+}
+
+.vue-slider-ltr {
+    height: 8px !important;
+
+    .vue-slider-dot-handle {
+        height: 20px !important;
+        width: 20px !important;
+        border-radius: 50% !important;
+        position: absolute !important;
+        right: -10px !important;
+        top: -3px !important;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    [data-bs-theme="dark"] & {
+        .vue-slider-dot-handle {
+            background: var(--#{$prefix}primary) !important;
+        }
+    }
+}
+
+.vue-slider-dot-tooltip-inner-top:after {
+    display: none;
+}
+
+
+[data-slider-style="line"] {
+    &.vue-slider-ltr {
+        .vue-slider-dot-handle {
+            width: 8px;
+            border-radius: 4px;
+            right: -8px !important;
+            background: var(--#{$prefix}primary);
+            box-shadow: none;
+        }
+    }
+}
+
+
+// Vertical Slider
+.vue-slider-vertical {
+    width: 8px !important;
+
+    .vue-slider-dot-handle {
+        position: absolute !important;
+        height: 20px !important;
+        width: 20px !important;
+        right: -3px !important;
+        top: -6px !important;
+        left: auto !important;
+        border-radius: 50% !important;
+
+        &::before,
+        &::after {
+            display: none !important;
+        }
+
+        &:focus {
+            outline: 0 !important;
+        }
+    }
+
+    .noUi-origin {
+        top: 0 !important;
+    }
+
+    [data-bs-theme="dark"] & {
+        .vue-slider-dot-handle {
+            background: var(--#{$prefix}primary) !important;
+        }
+    }
+}
+
+.vue-slider-dot-tooltip-inner-left:after {
+    display: none;
+}
+
+// tooltip
+.vue-slider-dot-tooltip {
+    padding: $tooltip-padding-y $tooltip-padding-x !important;
+    border-color: var(--#{$prefix}border-color) !important;
+    border-radius: $tooltip-border-radius !important;
+    font-weight: $font-weight-semibold !important;
+    background-color: $card-bg !important;
+    color: var(--#{$prefix}body-color) !important;
+}
+
+// Marker
+.noUi-marker {
+    background: var(--#{$prefix}light);
+}
+
+.noUi-value-horizontal {
+    padding-top: 4px;
+    color: var(--#{$prefix}secondary-color);
+}
+
+// rangeslider sizes
+[data-slider-size="sm"] {
+    .vue-slider-ltr {
+        height: 4px !important;
+
+        .vue-slider-dot-handle {
+            width: 16px !important;
+            height: 16px !important;
+            top: -2px !important;
+            right: 3px !important;
+        }
+    }
+
+    &[data-slider-style="line"] {
+        &.vue-slider-ltr {
+            .vue-slider-dot-handle {
+                width: 6px !important;
+                border-radius: 4px !important;
+                top: -3px !important;
+                right: 3px !important;
+                background: var(--#{$prefix}primary) !important;
+            }
+        }
+    }
+}
+
+[data-slider-size="lg"] {
+    &.vue-slider-ltr {
+        height: 12px !important;
+
+        .vue-slider-dot-handle {
+            width: 24px !important;
+            height: 24px !important;
+        }
+    }
+
+    &[data-slider-style="line"] {
+        &.vue-slider-ltr {
+            .vue-slider-dot-handle {
+                width: 10px !important;
+                border-radius: 4px !important;
+                right: -10px !important;
+            }
+        }
+    }
+}
+
+// rangeslider color
+@each $color,
+$value in $theme-colors {
+    [data-slider-color="#{$color}"] {
+        .vue-slider-process {
+            background: $value !important;
+        }
+
+        [data-bs-theme="dark"] & {
+            .vue-slider-dot-handle {
+                background: $value !important;
+            }
+        }
+
+        &[data-slider-style="line"] {
+            &.vue-slider-ltr {
+                .vue-slider-dot-handle {
+                    background: $value !important;
+                }
+            }
+        }
+    }
+}

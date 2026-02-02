@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <app-page-title title="Line Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Simple line chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="lineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Line with Data Labels">
+                <div card-body>
+                    <app-apexchart [getOptions]="lineWithDataLabelChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Zoomable Timeseries">
+                <div card-body>
+                    <app-apexchart [getOptions]="zoomableLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Line Chart with Annotations">
+                <div card-body>
+                    <app-apexchart [getOptions]="lineWithAnnotationsChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Syncing charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="syncChartSecondary"/>
+                    <app-apexchart [getOptions]="syncChartPrimary"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Gradient Line Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="gradientLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Missing / Null values">
+                <div card-body>
+                    <app-apexchart [getOptions]="missingDataLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Dashed Line Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="dashedLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Stepline Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="stepLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Brush Chart">
+                <div card-body>
+                    <div id="chart1">
+                        <app-apexchart id="chart1" [getOptions]="brushChartOverview"/>
+                    </div>
+                    <div id="chart2">
+                        <app-apexchart id="chart2" [getOptions]="brushChartMain"/>
+                    </div>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

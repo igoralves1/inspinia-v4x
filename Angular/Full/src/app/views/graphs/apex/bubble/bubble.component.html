@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <app-page-title title="Bubble Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Simple Bubble Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="simpleBubbleChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="3D Bubble Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="threedBubbleChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Bubble Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="bubbleChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

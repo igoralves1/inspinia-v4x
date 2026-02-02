@@ -1,0 +1,134 @@
+<div class="container-fluid">
+    <app-page-title title="Widgets"/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1 g-3 align-items-center">
+                        @for (item of statistic1Cards; track $index) {
+                            <div class="col">
+                                <app-statistic-card1 [item]="item"/>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-4">
+            <app-sales-performance-overview/>
+        </div>
+
+        <div class="col-xxl-4 col-lg-6">
+            <app-traffic-sources/>
+
+        </div>
+
+        <div class="col-xxl-4 col-lg-6">
+            <app-top-countries/>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-4">
+            <app-profile-card/>
+
+            <app-comment-card/>
+        </div>
+
+        <div class="col-xl-4">
+            <app-chat-card/>
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card text-bg-purple">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 gap-2">
+                                <div class="avatar-md">
+                                     <span
+                                         class="avatar-title bg-light bg-opacity-20 text-white rounded-circle fs-xl">
+                                        <ng-icon name="tablerPhone"/>
+                                    </span>
+                                </div>
+                                <p class="mb-0 fw-semibold">PHONE</p>
+                            </div>
+                            <h5 class="mb-1 text-white text-opacity-75">+1 800 123 4567</h5>
+                            <h5 class="mb-0 text-white text-opacity-75">+1 800 765 4321</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card text-bg-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 gap-2">
+                                <div class="avatar-md">
+                                       <span
+                                           class="avatar-title bg-light bg-opacity-20 text-white rounded-circle fs-xl">
+                                          <ng-icon name="tablerMail"/>
+                                      </span>
+                                </div>
+                                <p class="mb-0 fw-semibold">EMAIL</p>
+                            </div>
+                            <h5 class="mb-1 text-white text-opacity-75">support&#64;example.com</h5>
+                            <h5 class="mb-0 text-white text-opacity-75">sales&#64;example.com</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4">
+            <app-file-manage-card/>
+
+            <app-today-schedule/>
+        </div>
+    </div>
+
+
+    <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 align-items-center">
+        @for (item of statisticWidgets; track $index) {
+            <div class="col">
+                <app-statistic-widget1 [item]="item"/>
+            </div>
+        }
+    </div>
+
+    <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1">
+        @for (item of statisticCards3; track $index) {
+            <div class="col">
+                <app-statistic-card3 [item]="item"/>
+            </div>
+        }
+    </div>
+
+    <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1">
+        @for (item of statisticCards4; track $index) {
+            <div class="col">
+                <app-statistic-card4 [item]="item"/>
+            </div>
+        }
+    </div>
+
+    <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1">
+        @for (item of statisticCards5; track $index) {
+            <div class="col">
+                <app-statistic-card5 [item]="item"/>
+            </div>
+        }
+    </div>
+
+    <div class="row row-cols-xxl-6 row-cols-md-3 row-cols-2">
+        @for (item of statisticCards6; track $index) {
+            <div class="col">
+                <app-statistic-card6 [item]="item"/>
+            </div>
+        }
+    </div>
+
+</div>

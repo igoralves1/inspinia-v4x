@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <app-page-title title="Flags" subTitle="Icons"/>
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="card">
+                <div class="card-header justify-content-between">
+                    <div>
+                        <h4 class="card-title mb-1 d-flex align-items-center gap-2">
+                            Flags Listing (SVG)
+                        </h4>
+                        <p class="mb-0 text-muted">We offer a set of scalable SVG flags, perfect for language selectors
+                            and international content.</p>
+                    </div>
+                    <div class="app-search">
+                        <input type="search" [(ngModel)]="tableService.searchTerm" class="form-control"
+                               placeholder="Search country..." id="countrySearch">
+                        <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="flagTable" class="table-custom mb-0 table table-bordered align-middle text-center w-100">
+                            <thead>
+                            <tr class="fs-xxs">
+                                <th>Flag</th>
+                                <th  sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">Country Name</th>
+                                <th  sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">Path</th>
+                                <th sortable="code" (sort)="tableService.setSort($event.column, $event.direction)">code</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @if ((total$ | async)! > 0) {
+                                    @for (country of countries$ | async; track $index) {
+                                        <tr>
+                                            <td>
+                                                <img [src]="country.flag" height="18" class="rounded"/>
+                                            </td>
+                                            <td >{{ country.name }}</td>
+                                            <td ><code>{{ country.flag }}</code></td>
+                                            <td>{{ country.code.toUpperCase() }}</td>
+                                        </tr>
+                                    }
+                                } @else {
+                                    <tr>
+                                        <td colspan="6" class="text-center table-danger" role="alert">
+                                            No country name found. Please try again with a different search.
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                        <div
+                            class="align-items-center justify-content-between pagination-boxed row text-center text-sm-start">
+                            <div class="col-sm">
+                                {{ tableService.showingRange }} entries
+                            </div>
+                            <div class="col-sm-auto mt-3 mt-sm-0">
+                                <ngb-pagination
+                                    [collectionSize]="(total$ | async)!"
+                                    [(page)]="tableService.page"
+                                    [pageSize]="tableService.pageSize"
+                                >
+                                    <ng-template ngbPaginationPrevious>
+                                        <ng-icon name="tablerChevronLeft"/>
+                                    </ng-template>
+                                    <ng-template ngbPaginationNext>
+                                        <ng-icon name="tablerChevronRight"/>
+                                    </ng-template>
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                    }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>

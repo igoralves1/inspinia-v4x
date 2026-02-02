@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <app-page-title title="Funnel Apexcharts" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Funnel">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicFunnelChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Pyramid Funnel">
+                <div card-body>
+                    <app-apexchart [getOptions]="pyramidFunnelChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <app-page-title title="Blog" subTitle="Apps"/>
+    <ngx-masonry class="row masonry-grid" [options]="{percentPosition:true} ">
+        @for (blog of blogs; track $index) {
+            <div class="col-xl-3 col-md-6" ngxMasonryItem>
+                <app-blog-card [blog]="blog"/>
+            </div>
+        }
+    </ngx-masonry>
+</div>

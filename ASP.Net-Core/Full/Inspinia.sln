@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.36105.23 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspinia", "Inspinia.csproj", "{248BE8E4-B1F7-4E71-91D2-08315D36C188}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{248BE8E4-B1F7-4E71-91D2-08315D36C188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248BE8E4-B1F7-4E71-91D2-08315D36C188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248BE8E4-B1F7-4E71-91D2-08315D36C188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248BE8E4-B1F7-4E71-91D2-08315D36C188}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17C0A979-E6F7-4B4F-8438-2574C99672B7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Idle Timer" title="Miscellaneous"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Idle Timer Plugin</h4>
+                </div>
+                <div class="card-body">
+                    @if (showAlert) {
+                        <ngb-alert type="danger" [dismissible]="false" class="alert alert-danger"
+                                   role="alert">
+                            Your session has expired. Please move your mouse to resume your activity.
+                        </ngb-alert>
+                    }
+
+                    <p class="text-muted">
+                        The Idle Timer plugin allows you to monitor user activity on the page. Idle is defined as a lack of mouse movement, scrolling, or keyboard input.
+                    </p>
+
+                    <div class="text-center p-3 h-200">
+                        <ng-icon name="tablerHandFinger" class="fs-36 mb-3 d-block mx-auto"></ng-icon>
+                        <h3 class="fst-italic">Please stay idle for 5 seconds</h3>
+                    </div>
+
+                    <p class="mb-0">
+                        You can instantiate the timer either statically or on a specific element. Element-bound timers
+                        will only track activity within that element, whereas global timers will monitor activity on the
+                        entire page.
+                    </p>
+
+                    <div class="toast-container position-fixed top-0 end-0 m-3 z-5" >
+                        @for (toast of toasts; track $index) {
+                            <ngb-toast [class]="toast.classname"
+                                       [autohide]="true" [delay]="toast.delay" (hidden)="remove(toast)"
+                                     >
+
+                                <div ngbToastHeader>
+                                    <strong class="me-auto">{{ toast.header }}</strong>
+                                    <div class="d-flex align-items-center gap-2 float-end">
+                                        <small>Now</small>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                                                (click)="remove(toast)"></button>
+                                    </div>
+                                </div>
+
+                                <div class="toast-body fst-italic">
+                                    {{ toast.text }}
+                                </div>
+                            </ngb-toast>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

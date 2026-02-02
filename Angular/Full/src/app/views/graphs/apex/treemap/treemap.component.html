@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <app-page-title title="Treemap Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Treemap">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicTreemapOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Treemap Multiple Series">
+                <div card-body>
+                    <app-apexchart [getOptions]="multipleSeriesTreemapOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Distributed Treemap">
+                <div card-body>
+                    <app-apexchart [getOptions]="distributedTreemapOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Color Range Treemap">
+                <div card-body>
+                    <app-apexchart [getOptions]="colorRangeTreemapOptions"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

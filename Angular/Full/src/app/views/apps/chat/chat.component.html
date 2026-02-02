@@ -1,0 +1,122 @@
+<div class="container-fluid">
+    <app-page-title title="Chat" subTitle="Apps"/>
+
+    <div class="outlook-box">
+        <ng-template #content>
+            <app-chat-sidebar (select)="activeChatId = $event" [activeChatId]="activeChatId"/>
+        </ng-template>
+        <app-chat-sidebar (select)="activeChatId = $event" [activeChatId]="activeChatId"
+                          class="d-none d-lg-block outlook-left-menu outlook-left-menu-lg"/>
+
+        <div class="card h-100 mb-0 rounded-start-0 flex-grow-1 position-relative">
+            <div class="card-header card-bg">
+                <div class="d-lg-none d-inline-flex gap-2">
+                    <button class="btn btn-default btn-icon" (click)="openSidebar(content)">
+                        <ng-icon name="tablerMenu2" class="fs-lg"/>
+                    </button>
+                </div>
+                <div class="flex-grow-1">
+                    <h5 class="mb-1 lh-base fs-lg">
+                        <a class="link-reset">{{ activeUser?.name }}</a>
+                    </h5>
+                    <p class="mb-0 lh-sm text-muted">
+                        <small>
+                            <ng-icon name="tablerCircleFill" class="text-success me-1"/>
+                        </small> Active
+                    </p>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+
+                    <button type="button" class="btn btn-default btn-icon" ngbTooltip="Video Call">
+                        <ng-icon name="tablerVideo" class="fs-lg"/>
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-icon" ngbTooltip="Audio Call">
+                        <ng-icon name="tablerPhone" class="fs-lg"/>
+                    </button>
+
+                    <div ngbDropdown>
+                        <button type="button" class="btn btn-default btn-icon drop-arrow-none" ngbDropdownToggle
+                                aria-expanded="false" title="More">
+                            <ng-icon name="tablerDotsVertical" class="fs-lg"/>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                            <li><a ngbDropdownItem [routerLink]="[]">
+                                <ng-icon name="tablerUser" class="me-2"/>
+                                View
+                                Profile</a></li>
+                            <li><a ngbDropdownItem [routerLink]="[]">
+                                <ng-icon name="tablerBellOff" class="me-2"/>
+                                Mute
+                                Notifications</a></li>
+                            <li><a ngbDropdownItem [routerLink]="[]">
+                                <ng-icon name="tablerTrash" class="me-2"/>
+                                Delete
+                                Chat</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ngx-simplebar #simplebarRef style="max-height: calc(100vh - 317px);">
+                <div class="card-body pt-0 pb-2">
+                    @for (msg of messages; track i; let i = $index) {
+                        <div class="d-flex align-items-start gap-2 my-3 chat-item "
+                             [class.text-end]="msg.from === 'me'" [class.justify-content-end]="msg.from === 'me'">
+                            @if (msg.from === 'them' && !activeUser?.avatar) {
+                                <span
+                                    class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title text-bg-primary fw-bold rounded-circle">
+                                       {{ generateInitials(activeUser!.name) }}
+                                    </span>
+                                </span>
+                            }
+                            @if (msg.from === 'them' && activeUser?.avatar) {
+                                <img
+                                    [src]="activeUser?.avatar"
+                                    class="avatar-md rounded-circle"
+                                    alt="avatar"/>
+                            }
+                            <div>
+                                <div class="chat-message py-2 px-3 rounded"
+                                     [class]=" msg.from === 'me' ? 'bg-info-subtle': 'bg-warning-subtle'">
+                                    {{ msg.content }}
+                                </div>
+                                <div class="text-muted fs-xs mt-1">
+                                    <ng-icon name="tablerClock"/>
+                                    {{ msg.time }}
+                                </div>
+                            </div>
+                            @if (msg.from === 'me') {
+                                <img src="assets/images/users/user-2.jpg"
+                                     class="avatar-md rounded-circle" alt="me"/>
+                            }
+                        </div>
+                    }
+                </div>
+            </ngx-simplebar>
+
+            <div class="card-footer position-absolute bottom-0 w-100 bg-body-secondary border-top border-dashed">
+                <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" novalidate>
+                    <div class="d-flex gap-2">
+                        <div class="app-search flex-grow-1">
+                            <input formControlName="message" [(ngModel)]="currentMessage"
+                                   type="text" required
+                                   class="form-control py-2 bg-light-subtle border-light"
+                                   placeholder="Enter message..."/>
+                            <lucide-angular [img]="LucideMessageSquare" class="app-search-icon text-muted"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Send
+                            <ng-icon name="tablerSend2" class="ms-1 fs-xl"/>
+                        </button>
+                    </div>
+                    @if (chatForm.get('message')?.invalid && submitted) {
+                        <span class="text-danger mt-3">Message cannot be empty.</span>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

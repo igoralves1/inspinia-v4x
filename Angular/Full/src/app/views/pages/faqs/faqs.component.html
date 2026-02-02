@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Pages" title="FAQs"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-9">
+            <div class="row justify-content-center my-4">
+                <div class="col-lg-5 col-md-8">
+                    <div class="text-center">
+                        <h3 class="fw-bold mb-4">Frequently Asked Questions</h3>
+                        <div class="app-search mb-3">
+                            <input type="text" class="form-control py-2 rounded-pill" placeholder="Search Questions...">
+                            <lucide-angular [img]="searchIcon" class="app-search-icon text-muted"></lucide-angular>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-1">
+                            <h5 class="text-muted mb-0">Popular Searches : </h5>
+                            @for (search of popularSearch; track $index) {
+                                <a  [routerLink]="[]"
+                                   class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 fs-6">{{ search }}</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <app-general/>
+                </div>
+
+                <div class="col-xl-6">
+                    <app-payments/>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <app-refunds/>
+                </div>
+
+
+                <div class="col-xl-6">
+                    <app-customization/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

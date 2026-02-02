@@ -1,0 +1,75 @@
+<div class="collapse navbar-collapse" id="topnav-menu-content">
+    <ul class="navbar-nav">
+        @for (item of menuItems; track $index) {
+            <!-- menu item without any child -->
+            @if (!hasSubMenu(item)) {
+                <li class="nav-item">
+                    <ng-container *ngTemplateOutlet="MenuItem;context:{item,linkClass:'nav-link'}"/>
+                </li>
+            }
+            <!-- menu item with child -->
+            @if (hasSubMenu(item)) {
+                <ng-container
+                    *ngTemplateOutlet="MenuItemWithChildren;context:{item, wrapperClass:'nav-item', togglerClass:'nav-link'}"/>
+            }
+        }
+
+    </ul>
+</div>
+
+<ng-template #MenuItemWithChildren let-item="item" let-wrapperClass="wrapperClass" let-togglerClass="togglerClass">
+    <li ngbDropdown [class]="wrapperClass" class="dropdown" [class.active]="isChildActive(item)">
+        <a ngbDropdownToggle [class]="togglerClass" class="dropdown-toggle drop-arrow-none" role="button">
+            @if (item.icon) {
+                <span>
+                <ng-icon class="menu-icon" [name]="item.icon"></ng-icon>
+            </span>
+            }
+            <span class="menu-text"> {{ item.label }} </span>
+            @if (item.badge) {
+                <span [class]="`badge bg-${item.badge.variant}`">{{ item.badge.text }}</span>
+            }
+            @if (!item.badge) {
+                <span class="menu-arrow">
+                <ng-icon name="tablerChevronDown"></ng-icon>
+             </span>
+            }
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu">
+            @for (child of item.children; track $index) {
+                <!-- menu item without any child -->
+                @if (!hasSubMenu(child)) {
+                    <ng-container *ngTemplateOutlet="MenuItem;context:{item:child,linkClass:'dropdown-item'}"/>
+                }
+
+                <!-- menu item with child -->
+                @if (hasSubMenu(child)) {
+                    <ng-container
+                        *ngTemplateOutlet="MenuItemWithChildren;context:{item:child,togglerClass:'dropdown-item'}"/>
+                }
+
+            }
+        </div>
+    </li>
+</ng-template>
+
+<ng-template #MenuItem let-item="item" let-linkClass="linkClass">
+    @if (item.url) {
+        <a [routerLink]="item.url" [target]="item.target" [class]="linkClass"
+           [class.active]="isActive(item)"
+           [class.disabled]="item.isDisabled"
+           [class.special-menu]="item.isSpecial"
+        >
+            @if (item.icon) {
+                <span>
+                <ng-icon class="menu-icon" [name]="item.icon"></ng-icon>
+              </span>
+            }
+            <span class="menu-text">{{ item.label }}</span>
+            @if (item.badge) {
+                <span class="badge text-bg-{{item.badge.variant}} opacity-50"
+                      [innerHTML]="item.badge.text"></span>
+            }
+        </a>
+    }
+</ng-template>

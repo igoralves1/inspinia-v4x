@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <app-page-title title="Kanban Board" subTitle="Projects"/>
+
+    <div class="outlook-box kanban-app">
+        <div class="card h-100 mb-0 flex-grow-1">
+            <div class="card-header border-light align-items-center gap-2">
+                <div class="app-search">
+                    <input type="search" class="form-control" placeholder="Search tasks...">
+                    <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                    <div class="app-search">
+                        <select class="form-select form-control">
+                            <option selected>Department</option>
+                            <option value="Design">Design</option>
+                            <option value="Development">Development</option>
+                            <option value="UI/UX">UI/UX</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Finance">Finance</option>
+                            <option value="QA">QA</option>
+                        </select>
+                        <lucide-angular [img]="LucideBriefcase" class="app-search-icon text-muted"/>
+                    </div>
+
+                    <div class="app-search">
+                        <select class="form-select form-control">
+                            <option selected>Due Date</option>
+                            <option value="Today">Today</option>
+                            <option value="This Week">This Week</option>
+                            <option value="This Month">This Month</option>
+                        </select>
+                        <lucide-angular [img]="LucideCalendarClock" class="app-search-icon text-muted"></lucide-angular>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-secondary ms-lg-auto">
+                    <ng-icon name="tablerPlus" class="me-1"/>
+                    Add New Card
+                </button>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="kanban-content bg-light bg-opacity-40" cdkDropListGroup>
+
+                    <div class="kanban-board">
+                        <div class="kanban-item py-2 px-3 d-flex align-items-center">
+                            <h5 class="m-0">To Do ({{ todoTasks.length }})</h5>
+                            <a [routerLink]="[]" class="ms-auto btn btn-sm btn-icon rounded-circle btn-primary">
+                                <ng-icon
+                                    name="tablerPlus"/>
+                            </a>
+                        </div>
+                        <div class="kanban-board-group px-3" (cdkDropListDropped)="drop($event)"
+                             cdkDropList
+                             [cdkDropListData]="todoTasks">
+                            <ngx-simplebar style="height: 100%;">
+                                <ul>
+                                    @for (task of todoTasks; track task.id; ) {
+                                        <li class="kanban-item">
+                                            <app-task-item [item]="task" cdkDrag/>
+                                        </li>
+                                    }
+                                </ul>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+                    <div class="kanban-board">
+                        <div class="py-2 px-3 d-flex align-items-center">
+                            <h5 class="m-0">In Progress ({{ inprogressTasks.length }})</h5>
+                            <a [routerLink]="[]" class="ms-auto btn btn-sm btn-icon rounded-circle btn-primary">
+                                <ng-icon
+                                    name="tablerPlus"/>
+                            </a>
+                        </div>
+                        <div class="kanban-board-group px-3" (cdkDropListDropped)="drop($event)"
+                             cdkDropList
+                             [cdkDropListData]="inprogressTasks">
+                            <ngx-simplebar style="height: 100%;">
+                                <ul>
+                                    @for (task of inprogressTasks; track task.id) {
+                                        <li class="kanban-item">
+                                            <app-task-item [item]="task" cdkDrag/>
+                                        </li>
+                                    }
+                                </ul>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+
+                    <div class="kanban-board">
+                        <div class="kanban-item py-2 px-3 d-flex align-items-center">
+                            <h5 class="m-0">In Review ({{ inreviewTasks.length }})</h5>
+                            <a [routerLink]="[]" class="ms-auto btn btn-sm btn-icon rounded-circle btn-primary">
+                                <ng-icon
+                                    name="tablerPlus"/>
+                            </a>
+                        </div>
+                        <div class="kanban-board-group px-3" (cdkDropListDropped)="drop($event)"
+                             cdkDropList
+                             [cdkDropListData]="inreviewTasks">
+                            <ngx-simplebar style="height: 100%;">
+                                <ul>
+                                    @for (task of inreviewTasks; track task.id) {
+                                        <li class="kanban-item">
+                                            <app-task-item [item]="task" cdkDrag/>
+                                        </li>
+                                    }
+                                </ul>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+                    <div class="kanban-board">
+                        <div class="py-2 px-3 d-flex align-items-center">
+                            <h5 class="m-0">Done ({{ completedTasks.length }})</h5>
+                            <a [routerLink]="[]" class="ms-auto btn btn-sm btn-icon rounded-circle btn-primary">
+                                <ng-icon
+                                    name="tablerPlus"/>
+                            </a>
+                        </div>
+                        <div class="kanban-board-group px-3" (cdkDropListDropped)="drop($event)"
+                             cdkDropList
+                             [cdkDropListData]="completedTasks">
+                            <ngx-simplebar style="height: 100%;">
+                                <ul>
+                                    @for (task of completedTasks; track task.id) {
+                                        <li class="kanban-item">
+                                            <app-task-item [item]="task" cdkDrag/>
+                                        </li>
+                                    }
+                                </ul>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

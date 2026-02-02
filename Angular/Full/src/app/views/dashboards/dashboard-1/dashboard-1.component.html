@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <div class="col-xxl-3 col-xl-6 order-xl-1 order-xxl-0">
+                            <app-messages/>
+                            <hr class="d-xxl-none border-light m-0">
+                        </div>
+                        <div class="col-xxl-6 order-xl-3 order-xxl-1">
+                            <app-revenue-chart/>
+                        </div>
+                        <div class="col-xxl-3 col-xl-6 order-xl-2 order-xxl-2">
+                            <app-project-progress-chart/>
+                            <hr class="d-xxl-none border-light m-0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 align-items-center">
+        @for (item of statisticWidgets; track $index) {
+            <div class="col">
+                <app-statistic-widget1 [item]="item" [isBgLight]="true"/>
+            </div>
+        }
+
+    </div>
+
+    <div class="row">
+        <div class="col-xxl-4">
+            <app-quarterly-reports/>
+
+            <app-project-performance/>
+        </div>
+
+        <div class="col-xxl-4 col-xl-6">
+            <app-project-updates/>
+        </div>
+        <div class="col-xxl-4 col-xl-6">
+            <app-discussions/>
+        </div>
+    </div>
+
+</div>

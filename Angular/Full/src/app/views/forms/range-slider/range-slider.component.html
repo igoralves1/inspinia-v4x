@@ -1,0 +1,208 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Forms" title="Range Slider"/>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Examples</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-2">
+                        noUiSlider is a lightweight, ARIA-accessible JavaScript range slider with multi-touch and
+                        keyboard support. It is fully GPU animated: no reflows, so it is fast; even on older
+                        devices. It
+                        also fits wonderfully in responsive designs and has no dependencies
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold" href="https://refreshless.com/nouislider/"
+                       target="_blank">
+                        View Official Website
+                        <ng-icon name="tablerChevronRight" class="ms-1"/>
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Basic Range Slider</h5>
+                            <p class="text-muted mb-0">A simple single-value slider.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="range" class="m-0"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Sizes</h5>
+                            <p class="text-muted mb-0">Adjust element size using different slider sizes.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="sizeRange"
+                           class="slider-size-sm mt-0" />
+
+                            <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="sizeRange2"
+                                        class="mt-4 mb-0 slider-size-lg"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Line Style</h5>
+                            <p class="text-muted mb-0">Customize line handle style using sliders.</p>
+                        </div>
+                        <div class="col-lg-8">
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="lineRange1"
+                                class="m-0 slider-style-line"/>
+
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="lineRange2"
+                                class="slider-style-line slider-size-sm mt-3"/>
+
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255" [(ngModel)]="lineRange3"
+                                class="slider-style-line slider-size-lg mt-4"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Color Scheme Sliders</h5>
+                            <p class="text-muted mb-0">Sliders styled with theme colors.</p>
+                        </div>
+                        <div class="col-lg-8">
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255"
+                                            [(ngModel)]="colorSliderRange1" class="mt-0 mb-4"/>
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255"
+                                            [(ngModel)]="colorSliderRange2" class="mb-4 slider-color-secondary"/>
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255"
+                                            [(ngModel)]="colorSliderRange3" class="mb-4 slider-color-info slider-style-line"/>
+
+                                <nouislider [connect]="[true,false]" [min]="0" [max]="255"
+                                            [(ngModel)]="colorSliderRange4" class="mb-4 slider-color-warning"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Multi Elements Range</h5>
+                            <p class="text-muted mb-0">Dual-handle slider for selecting a range.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <nouislider [connect]="true" [min]="0" [max]="100" [(ngModel)]="multiRange"
+                                        class="mt-4"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Value Range Slider (nonlinear)</h5>
+                            <p class="text-muted mb-0">Shows selected value range below the slider.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <nouislider [connect]="true" [min]="0" [max]="10000" behaviour="tap"
+                                        [(ngModel)]="linearRange" class="mt-4"/>
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="py-1 fw-semibold" id="lower-value">{{ linearRange[0] }}</div>
+                                <div class="py-1 fw-semibold" id="upper-value">{{ linearRange[1] }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5>Locking Sliders Together</h5>
+                            <p class="text-muted mb-0">Synchronize two sliders with a toggle lock.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <nouislider [connect]="true" [min]="50" [max]="100" [(ngModel)]="val1"
+                                        (change)="onChange1($event)"></nouislider>
+                            <div class="mb-2">{{ val1 }}</div>
+
+                            <nouislider [connect]="true" [min]="50" [max]="100" [(ngModel)]="val2"
+                                        (change)="onChange2($event)"></nouislider>
+                            <div class="mb-2">{{ val2 }}</div>
+
+                            <button class="btn btn-sm btn-primary" (click)="toggleLock()">
+                                <ng-icon [name]="locked ? 'tabler-lock-off' : 'tabler-lock'" class="me-1"></ng-icon>
+                                {{ locked ? 'Unlock' : 'Lock' }}
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Tooltip Slider</h5>
+                            <p class="text-muted mb-0">Displays tooltips with merged slider values.</p>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <div class="slider mt-4" id="slider-merging-tooltips">
+                                <nouislider [connect]="true" [tooltips]="[true,true]" [min]="0" [max]="100"
+                                            [(ngModel)]="tooltipSliderRange"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Soft Limits Slider</h5>
+                            <p class="text-muted mb-0">Allows overflow beyond defined min/max.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="slider mb-4" id="soft">
+                                <nouislider [config]="softSliderConfig" [min]="0" [max]="100"
+                                            [(ngModel)]="softLimitsSlider"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <!-- Vertical Sliders -->
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <h5 class="mb-1">Vertical Sliders</h5>
+                            <p class="text-muted mb-0">Sliders arranged vertically.</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="d-flex gap-5 overflow-hidden p-3">
+                                <div id="slider-vertical">
+                                    <nouislider [config]="verticalSliderConfig" [min]="0" [max]="100"
+                                                [(ngModel)]="verticalSliderRange"/>
+                                </div>
+                                <div id="slider-vertical"  class="me-3">
+                                    <nouislider [connect]="[false,true]" [min]="0" [max]="100" [config]="{orientation: 'vertical'}"
+                                                [(ngModel)]="verticalSliderRange2" class="slider-color-warning"/>
+                                </div>
+                                <div id="slider-vertical-tooltip">
+                                    <nouislider [connect]="false" [min]="0" [max]="100" [config]="{orientation: 'vertical',tooltips: true}"
+                                                [(ngModel)]="verticalSliderRange3" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

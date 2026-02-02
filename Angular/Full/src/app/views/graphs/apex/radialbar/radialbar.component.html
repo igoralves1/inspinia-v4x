@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <app-page-title title="RadialBar Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic RadialBar Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicRadialBar"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Multiple RadialBars">
+                <div card-body>
+                    <app-apexchart [getOptions]="multipleRadialBars"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Circle Chart - Custom Angle">
+                <div card-body>
+                    <app-apexchart [getOptions]="customAngleCircle"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Circle Chart with Image">
+                <div card-body>
+                    <app-apexchart [getOptions]="imageFillCircle"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Stroked Circular Gauge">
+                <div card-body>
+                    <app-apexchart [getOptions]="strokedGauge"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Gradient Circular Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="gradientCircle"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Semi Circle Gauge">
+                <div card-body>
+                    <app-apexchart [getOptions]="semiCircleGauge"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

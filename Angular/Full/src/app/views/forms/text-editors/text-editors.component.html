@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <app-page-title title="Text Edotors" subTitle="forms" />
+</div>
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <app-ui-card title="Quilljs" bodyClass="p-0">
+                <ng-container card-body>
+                    <div class="p-3">
+                        <p class="text-muted mb-2">
+                            Quill is a modern WYSIWYG editor built for compatibility and extensibility
+                        </p>
+
+                        <a class="btn btn-link p-0 fw-semibold" href="https://quilljs.com/" target="_blank">
+                            Quilljs on View Official Website
+                            <ng-icon name="tablerChevronRight" class="ms-1" />
+                        </a>
+                    </div>
+
+                    <div class="border-top border-dashed"></div>
+
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">Snow Editor</h5>
+                        <p class="text-muted">Snow is a clean, flat toolbar theme.</p>
+
+                        <quill-editor  [(ngModel)]="content" theme="snow" [modules]="editorConfig"
+                            style="height: 300px" class="w-100"></quill-editor>
+
+                    </div>
+
+                    <div class="border-top border-dashed"></div>
+
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">Bubble Editor</h5>
+
+                        <p class="text-muted">Bubble is a simple tooltip based theme.</p>
+
+                        <quill-editor  [(ngModel)]="content1" theme="bubble" [modules]="bubbleEditorConfig"
+                            style="height: 300px" class="w-100"></quill-editor>
+                    </div>
+                </ng-container>
+            </app-ui-card>
+
+        </div>
+    </div>
+
+</div>

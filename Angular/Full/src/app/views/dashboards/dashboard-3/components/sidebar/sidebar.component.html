@@ -1,0 +1,13 @@
+<div class="asidebar-button d-xl-none d-flex">
+    <button class="btn btn-danger btn-icon rounded-end-0" (click)="open(content)">
+        <ng-icon name="tablerAdjustmentsHorizontal" class="fs-xl"/>
+    </button>
+</div>
+
+<ng-template #content let-offcanvas>
+    <ngx-simplebar style="height: 100%">
+        <app-sidebar-content/>
+    </ngx-simplebar>
+</ng-template>
+
+<app-sidebar-content class="d-xl-block d-none asidebar border-start overflow-hidden"/>

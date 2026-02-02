@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <app-page-title title="Pie Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Simple Pie Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="simplePieChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Simple Donut Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="simpleDonutChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Monochrome Pie Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="monochromePieChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Gradient Donut Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="gradientDonutChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Patterned Donut Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="patternedDonutChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Pie Chart with Image fill">
+                <div card-body>
+                    <app-apexchart [getOptions]="imagePieChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <apex-updatable-donut-chart/>
+        </div>
+    </div>
+</div>

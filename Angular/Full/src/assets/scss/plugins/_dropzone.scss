@@ -1,0 +1,60 @@
+//
+// dropzone.scss
+//
+
+
+.dropzone {
+    border: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+
+    .dropzone.dz-wrapper {
+        border: 2px dashed var(--#{$prefix}border-color) !important;
+        background: $input-bg !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        min-height: 150px !important;
+        padding: 20px !important;
+
+        .dz-message {
+            text-align: center;
+            margin: 1rem 0 !important;
+            height: 195px !important;
+            background-color: transparent !important;
+            border: 0;
+            overflow: hidden;
+            scrollbar-width: none;
+            scroll-behavior: unset;
+
+            .dz-message {
+                background-color: transparent !important;
+                border: 0 !important;
+                margin: 0 !important;
+            }
+
+            .dz-text {
+                font-size: 13px !important;
+                font-weight: 500;
+            }
+        }
+
+        &.dz-started {
+            .dz-message {
+                // display: none;
+            }
+        }
+    }
+
+    .upload-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: currentColor;
+        mask-image: var(--svg);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M7 18a4.6 4.4 0 0 1 0-9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1'/%3E%3Cpath d='m9 15l3-3l3 3m-3-3v9'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+}
+

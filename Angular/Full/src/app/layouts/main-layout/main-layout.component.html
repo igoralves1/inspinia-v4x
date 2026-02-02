@@ -1,0 +1,23 @@
+@if (layout.isLoading) {
+    <div class="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+
+
+@if (layout.orientation === 'vertical') {
+    <app-vertical-layout>
+        <router-outlet/>
+    </app-vertical-layout>
+}
+
+@if (layout.orientation === 'horizontal') {
+    <app-horizontal-layout>
+        <router-outlet/>
+    </app-horizontal-layout>
+}
+
+
+

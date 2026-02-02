@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <app-page-title title="Collapse" subTitle="UI"/>
+</div>
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-xl-12">
+            <app-ui-card title="Examples">
+                <div  card-body>
+                    <p class="text-muted mb-2">
+                        Toggle the visibility of content across your project with a few classes and our JavaScript
+                        plugins.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold"
+                       href="https://getbootstrap.com/docs/5.3/components/collapse/" target="_blank">
+                        Collapse on Bootstrap
+                        <ng-icon name="tablerChevronRight" class="ms-1"/>
+                    </a>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Collapse">
+                <div  card-body>
+                    <p>
+                        <a class="btn btn-primary" (click)="collapse.toggle()"
+                           aria-expanded="false" aria-controls="collapseExample">
+                            Link with href
+                        </a>
+                        <button class="btn btn-primary ms-1" type="button" (click)="isCollapsed = !isCollapsed"
+                        >
+                            Button with data-bs-target
+                        </button>
+                    </p>
+                    <div  #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                        <div class="card card-body mb-0">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life
+                            accusamus terry
+                            richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                            labore wes
+                            anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Multiple Targets">
+                <div card-body>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <a class="btn btn-primary" (click)="toggleFirst.toggle()" role="button">Toggle first element</a>
+                        <button class="btn btn-primary" type="button" (click)="toggleSecond.toggle()">Toggle second element
+                        </button>
+                        <button class="btn btn-primary" type="button" (click)="toggleFirst.toggle(); toggleSecond.toggle()">Toggle both elements
+                        </button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div #toggleFirst="ngbCollapse" [(ngbCollapse)]="isFirstToggle">
+                                <div class="card card-body mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div #toggleSecond="ngbCollapse" [(ngbCollapse)]="isSecondToggle">
+                                <div class="card card-body mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-ui-card>
+        </div>
+
+
+        <div class="col-xl-6">
+            <app-ui-card title="Collapse Horizontal">
+                <div  card-body>
+                    <p>
+                        <button class="btn btn-primary" type="button" (click)="horizontalCollapse.toggle()">
+                            Toggle width collapse
+                        </button>
+                    </p>
+                    <div style="height: 100px;">
+                        <div  #horizontalCollapse="ngbCollapse" [horizontal]="true" [(ngbCollapse)]="isHorizontal">
+                            <div class="card card-body mb-0" style="width: 300px;">
+                                This is some placeholder content for a horizontal collapse. It's hidden by default and
+                                shown when triggered.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>

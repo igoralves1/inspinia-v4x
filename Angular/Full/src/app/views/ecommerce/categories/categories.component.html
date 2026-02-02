@@ -1,0 +1,167 @@
+<div class="container-fluid">
+    <app-page-title title="Categories" subTitle="Ecommerce"/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-light justify-content-between">
+
+                    <div class="d-flex gap-2">
+                        <div class="app-search">
+                            <input [(ngModel)]="tableService.searchTerm" data-table-search type="search"
+                                   class="form-control"
+                                   placeholder="Search category...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                        @if (hasSelection) {
+                            <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+                        }
+                    </div>
+
+                    <div class="d-flex align-items-center gap-1">
+                        <div>
+                            <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="8">8</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="15">15</option>
+                                <option [ngValue]="20">20</option>
+                            </select>
+                        </div>
+
+                        <div class="app-search">
+                            <select [(ngModel)]="filterStatus"
+                                    (ngModelChange)="tableService.setFilter('status', filterStatus)"
+                                    class="form-select form-control my-1 my-md-0">
+                                <option value="All">All</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <lucide-angular [img]="LucideCircle" class="app-search-icon text-muted"/>
+                        </div>
+
+                        <button class="btn btn-primary ms-1">
+                            <lucide-angular [img]="LucidePlus" class="fs-sm me-2"/>
+                            Add Category
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+                        <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                        <tr class="text-uppercase fs-xxs">
+                            <th class="ps-3" style="width: 1%;">
+                                <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                                       class="form-check-input form-check-input-light fs-14 mt-0"
+                                       type="checkbox" value="option">
+                            </th>
+                            <th sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">Category
+                                Name
+                            </th>
+                            <th sortable="slug" (sort)="tableService.setSort($event.column, $event.direction)">Slug</th>
+                            <th sortable="products" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Products
+                            </th>
+                            <th sortable="orders" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Orders
+                            </th>
+                            <th sortable="earnings" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Earnings
+                            </th>
+                            <th sortable="date" (sort)="tableService.setSort($event.column, $event.direction)">Last
+                                Modify
+                            </th>
+                            <th sortable="status" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Status
+                            </th>
+                            <th class="text-center" style="width: 1%;">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ((total$ | async)! > 0) {
+                                @for ( category of categories$ | async; track $index) {
+                                <tr>
+                                    <td class="ps-3">
+                                        <input
+                                            class="form-check-input form-check-input-light fs-14 product-item-check mt-0"
+                                            type="checkbox" value="option" [(ngModel)]="category.selected"
+                                            (change)="toggleSingleSelection()">
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-md me-3">
+                                                <img [src]="category.image" alt="Product" class="img-fluid rounded">
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">
+                                                    <a data-sort="product" routerLink="/ecommerce/products/WB-10245"
+                                                       class="link-reset">{{ category.name }}</a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ category.slug }}</td>
+                                    <td>
+                                        <h5 class="fs-base mb-0 fw-medium">{{ category.products }}</h5>
+                                    </td>
+                                    <td>{{ category.orders }}k</td>
+                                    <td>{{ currency }}{{ category.earnings }}M</td>
+                                    <td>18 Apr, 2025 <small class="text-muted">{{ category.time }}</small></td>
+                                    <td><span
+                                        class="badge  fs-xxs {{category.status==='inactive' ? 'badge-soft-danger' : 'badge-soft-success'}}">{{ toTitleCase(category.status) }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <button class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                <ng-icon
+                                                    name="tablerEye" class="fs-lg"/>
+                                            </button>
+                                            <button class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                <ng-icon
+                                                    name="tablerEdit" class="fs-lg"/>
+                                            </button>
+                                            <button (click)="tableService.deleteItem(category)"
+                                                    class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                <ng-icon
+                                                    name="tablerTrash" class="fs-lg"/>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            } @else {
+                                <tr class="no-results">
+                                    <td colspan="9" class="text-center text-muted py-3">Nothing found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                        <div
+                            class="d-flex justify-content-between pagination-boxed align-items-center">
+                            {{ tableService.showingRange }} categories
+                            <ngb-pagination
+                                [collectionSize]="(total$ | async)!"
+                                [(page)]="tableService.page"
+                                [pageSize]="tableService.pageSize"
+                            >
+                                <ng-template ngbPaginationPrevious>
+                                    <ng-icon name="tablerChevronLeft"/>
+                                </ng-template>
+                                <ng-template ngbPaginationNext>
+                                    <ng-icon name="tablerChevronRight"/>
+                                </ng-template>
+                            </ngb-pagination>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

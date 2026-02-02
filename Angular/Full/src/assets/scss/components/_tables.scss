@@ -1,0 +1,75 @@
+//
+// tables.scss
+//
+
+// Custom table Small head
+.thead-sm {
+    > * > * {
+        padding: $table-cell-padding-y-sm $table-cell-padding-x-sm !important;
+    }
+}
+
+// Custom Table
+.table-custom {
+    tfoot > tr > th:first-child,
+    thead > tr > th:first-child,
+    tr th:first-child,
+    tr td:first-child {
+        padding-left: calc($table-cell-padding-y * 1.5) !important;
+    }
+
+    tfoot > tr > th:last-child,
+    thead > tr > th:last-child,
+    tr th:last-child,
+    tr td:last-child {
+        padding-right: calc($table-cell-padding-y * 1.5) !important;
+    }
+
+    .asc:after{
+        content: "";
+        transform: translateY(-2px);
+        padding-top: 2px;
+        height: 13px;
+        width: 13px;
+        display: inline-flex;
+        margin-left: 4px;
+        rotate: 180deg;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%238391a2'  xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z'/%3E%3C/svg%3E");
+    }
+
+    .desc:after{
+        content: "";
+        transform: translateY(2px);
+        height: 13px;
+        width: 13px;
+        display: inline-flex;
+        margin-left: 4px;
+        color: red;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%238391a2'  xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z'/%3E%3C/svg%3E");
+    }
+}
+
+// Tables fluid
+.table-nowrap {
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+
+// Table select
+.table-select:has(.form-check-input:checked) {
+    tr:has(.form-check-input:checked) {
+        background-color: rgba(var(--#{$prefix}warning-rgb), 0.1);
+    }
+}
+
+// Table with Dropdown
+.table tr>td .dropdown {
+    position: static;
+}
+
+th[sortable] {
+  cursor: pointer;
+}
+

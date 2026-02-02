@@ -1,0 +1,211 @@
+<div class="container-fluid">
+    <app-page-title title="Projects List" subTitle="Apps"/>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header border-light justify-content-between">
+                    <div class="d-flex gap-2">
+                        <div class="app-search">
+                            <input data-table-search type="search" class="form-control"
+                                   placeholder="Search project name...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                        @if (hasSelection) {
+                            <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+                        }
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="me-2 fw-semibold">Filter By:</span>
+
+                        <div class="app-search">
+                            <select [(ngModel)]="filterStatus"
+                                    (ngModelChange)="tableService.setFilter('status', filterStatus)"
+                                    class="form-select form-control my-1 my-md-0">
+                                <option value="All">Status</option>
+                                <option value="In-Progress">In Progress</option>
+                                <option value="Overdue">Overdue</option>
+                                <option value="In-Review">In Review</option>
+                                <option value="Completed">Completed</option>
+                                <option value="On-Hold">On Hold</option>
+                            </select>
+                            <lucide-angular [img]="LucideActivity" class="app-search-icon text-muted"/>
+                        </div>
+
+                        <div class="app-search">
+                            <select class="form-select form-control my-1 my-md-0">
+                                <option value="All">Deadline</option>
+                                <option value="Today">Today</option>
+                                <option value="Last 7 Days">Last 7 Days</option>
+                                <option value="Last 30 Days">Last 30 Days</option>
+                                <option value="This Year">This Year</option>
+                            </select>
+                            <lucide-angular [img]="LucideCalendarClock" class="app-search-icon text-muted"/>
+                        </div>
+
+                        <div>
+                            <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="8">8</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="15">15</option>
+                                <option [ngValue]="20">20</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-1">
+                        <a routerLink="/apps/projects" class="btn btn-soft-primary btn-icon">
+                            <lucide-angular [img]="LucideLayoutGrid" class="fs-lg"/>
+                        </a>
+                        <a routerLink="/apps/projects/list" class="btn btn-primary btn-icon">
+                            <lucide-angular [img]="LucideList" class="fs-lg"/>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+                        <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                        <tr class="text-uppercase fs-xxs">
+                            <th class="ps-3" style="width: 1%;">
+                                <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                                       class="form-check-input form-check-input-light fs-14 mt-0"
+                                       type="checkbox" value="option">
+                            </th>
+                            <th sortable="title" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Project
+                            </th>
+                            <th>Members</th>
+                            <th sortable="status" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Status
+                            </th>
+                            <th>Tasks</th>
+                            <th>Progress</th>
+                            <th>Attachments</th>
+                            <th>Comments</th>
+                            <th sortable="dueDate" (sort)="tableService.setSort($event.column, $event.direction)">Due
+                                Date
+                            </th>
+                            <th class="text-center" style="width: 1%;">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ((total$ | async)! > 0) {
+                                @for (project of projects$ | async; track $index) {
+                                    <tr>
+                                        <td class="ps-3">
+                                            <input type="checkbox" [(ngModel)]="project.selected"
+                                                   (change)="toggleSingleSelection()"
+                                                   class="form-check-input form-check-input-light fs-14 file-item-check mt-0">
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="avatar-md me-3">
+                                      <span class="avatar-title text-bg-light rounded">
+                                        <ng-icon [name]="project.icon"
+                                                 class="fs-24 text-{{project.variant}}"></ng-icon>
+                                      </span>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-1 d-flex align-items-centertoTitleCase(">
+                                                        <a routerLink="/apps/projects/view" class="link-reset">
+                                                            {{ project.title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="text-muted mb-0 fs-xxs">
+                                                        Updated {{ project.updatedTime }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="avatar-group avatar-group-xs">
+                                                @for (member of project.members; track $index) {
+                                                    <div class="avatar">
+                                                        <img [src]="member" alt="" class="rounded-circle avatar-xs">
+                                                    </div>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                              <span class="badge badge-soft-{{getStatusVariant(project.status)}} fs-xxs badge-label">
+                                {{ toTitleCase(project.status) }}
+                              </span>
+                                        </td>
+                                        <td>
+                                            @if (project.task) {
+                                                <h5 class="fs-base mb-0 fw-medium">
+                                                    {{ project.task.completed }}/{{ project.task.total }}
+                                                    @if (project.task.new) {
+                                                        <span
+                                                            class="badge bg-secondary">+{{ project.task.new }}
+                                                            New</span>
+                                                    }
+                                                    @if (project.status === 'completed') {
+                                                        <span
+                                                            class="badge bg-success">✓</span>
+                                                    }
+                                                </h5>
+                                            }
+                                        </td>
+                                        <td>
+                                            <ngb-progressbar [value]="project.progress" [type]="project.variant"
+                                                             style="height: 5px;"/>
+
+                                        </td>
+                                        <td>{{ project.attachments }} Files</td>
+                                        <td>{{ project.comments }} Comment{{ project.comments !== 1 ? 's' : '' }}</td>
+                                        <td>{{ project.dueDate }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <a [routerLink]="[]"
+                                                   class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEye" class="fs-lg"></ng-icon>
+                                                </a>
+                                                <a [routerLink]="[]"
+                                                   class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEdit" class="fs-lg"></ng-icon>
+                                                </a>
+                                                <button class="btn btn-light btn-icon btn-sm rounded-circle"
+                                                        (click)="tableService.deleteItem(project)">
+                                                    <ng-icon name="tablerTrash" class="fs-lg"></ng-icon>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr class="no-results">
+                                    <td colspan="11" class="text-center text-muted py-3">Nothing found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                    <div class="d-flex justify-content-between pagination-boxed align-items-center">
+                        {{ tableService.showingRange }} projects
+                        <ngb-pagination
+                            [collectionSize]="(total$ | async)!"
+                            [(page)]="tableService.page"
+                            [pageSize]="tableService.pageSize"
+                        >
+                            <ng-template ngbPaginationPrevious>
+                                <ng-icon name="tablerChevronLeft"/>
+                            </ng-template>
+                            <ng-template ngbPaginationNext>
+                                <ng-icon name="tablerChevronRight"/>
+                            </ng-template>
+                        </ngb-pagination>
+                    </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

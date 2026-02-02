@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <app-page-title title="Roles" subTitle="Users"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="d-flex align-items-sm-center flex-sm-row flex-column mb-3">
+                <div class="flex-grow-1">
+                    <h4 class="fs-xl mb-1">Manage Roles</h4>
+                    <p class="text-muted mb-0">Manage roles for smoother operations and secure access.</p>
+                </div>
+
+                <div class="text-end">
+                    <a href="javascript: void(0);" class="btn btn-success">
+                        <ng-icon name="tablerPlus" class="me-1"/>
+                        Add New Role
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                @for (role of userRoles; track $index) {
+                    <div class="col-md-6 col-lg-3" >
+                        <app-user-role-card [role]="role"/>
+                    </div>
+                }
+
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <app-user-table/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

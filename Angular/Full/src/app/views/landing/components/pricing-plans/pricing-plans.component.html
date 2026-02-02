@@ -1,0 +1,26 @@
+<section class="section-custom" id="plans">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="text-muted rounded-3 d-inline-block">💰 Transparent and flexible pricing</span>
+                <h2 class="mt-3 fw-bold mb-5">
+                    Choose the
+                    <mark class="fst-italic">License</mark>
+                    That Fits Your Needs
+                </h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xxl-10">
+                <div class="row">
+                    @for (plan of plans; track $index) {
+                        <div class="col-lg-4">
+                            <app-pricing-plan-card [plan]="plan"/>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

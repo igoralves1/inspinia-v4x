@@ -1,0 +1,29 @@
+<div class="container-fluid">
+<app-page-title title="Team Board" subTitle="Projects"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+
+            <div class="d-flex align-items-sm-center flex-sm-row flex-column mb-3">
+                <div class="flex-grow-1">
+                    <h4 class="fs-xl mb-1">Manage Teams</h4>
+                    <p class="text-muted mb-0">Assign roles to streamline teamwork and secure access.</p>
+                </div>
+
+                <div class="text-end">
+                    <a href="javascript: void(0);" class="btn btn-success">
+                        <ng-icon name="tablerPlus" class="me-1"/> Add New Team
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                @for ( team of teams; track $index) {
+                <div class="col-md-6 col-lg-4">
+                    <app-team-card [team]="team"/>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

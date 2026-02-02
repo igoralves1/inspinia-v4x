@@ -1,0 +1,144 @@
+<div class="container-fluid">
+    <app-page-title title="Tooltips" subTitle="UI"/>
+</div>
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-12">
+            <app-ui-card title="Examples">
+                <div card-body>
+                    <p class="text-muted mb-2">
+                        Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using
+                        CSS3 for animations and data-bs-attributes for local title storage.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold"
+                       href="https://getbootstrap.com/docs/5.3/components/tooltips/" target="_blank">
+                        Tooltips on Bootstrap
+                        <ng-icon name="tablerChevronRight"/>
+                    </a>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Basic">
+                <div card-body>
+                    <p class="text-muted">Hover over the links below to see tooltips.</p>
+
+                    <p class="mb-0">
+                        Powerful admin features like <a href="#" class="fw-medium"
+                                                        ngbTooltip="Manage your dashboard easily">custom dashboards</a>
+                        and UI components help you build scalable web applications efficiently.
+                        This template includes pre-built pages, clean layouts, and reusable code blocks to boost your
+                        development workflow.
+                        From user management to analytics and settings, everything is modular and developer-friendly.
+                        Create modern admin panels with <a href="#" class="fw-medium"
+                                                           ngbTooltip="Built with Bootstrap 5">responsive design</a> and
+                        seamless UX.
+                        Get started quickly with a professional-grade <a href="#" class="fw-medium"
+                                                                         ngbTooltip="Tailored for developers">UI
+                        toolkit</a> and supercharge your app with <a href="#" class="fw-medium"
+                                                                     ngbTooltip="Includes charts, tables, forms and more">powerful
+                        components</a> and flexible layouts.
+                    </p>
+
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Disabled Elements">
+                <div card-body>
+                    <p class="text-muted">Elements with the <code>disabled</code> attribute
+                        aren’t interactive, meaning users cannot focus, hover, or click them to trigger
+                        a tooltip (or popover). As a workaround, you’ll want to trigger the tooltip from
+                        a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made
+                        keyboard-focusable using <code>tabindex="0"</code>, and override the
+                        <code>pointer-events</code> on the disabled element.
+                    </p>
+
+                    <span class="d-inline-block" tabindex="0" ngbTooltip="Disabled tooltip">
+                                    <button class="btn btn-primary pe-none" type="button"
+                                            disabled>Disabled Button</button>
+                     </span>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Hover Elements">
+                <div card-body>
+                    <p class="text-muted">Elements with the <code>disabled</code> attribute
+                        aren’t interactive, meaning users cannot focus, hover, or click them to trigger
+                        a tooltip (or popover). As a workaround, you’ll want to trigger the tooltip from
+                        a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made
+                        keyboard-focusable using <code>tabindex="0"</code>, and override the
+                        <code>pointer-events</code> on the disabled element.
+                    </p>
+
+                    <button class="btn btn-primary" type="button" triggers="hover"
+                            ngbTooltip="Tooltip appears on hover only">Hover to See Info
+                    </button>
+                </div>
+            </app-ui-card>
+
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Four Directions">
+                <div card-body>
+                    <p class="text-muted">Hover over the buttons below to see the four tooltips
+                        directions: top, right, bottom, and left.</p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-info" placement="top"
+                                ngbTooltip="Tooltip on top">Tooltip on top
+                        </button>
+                        <button type="button" class="btn btn-info" placement="bottom"
+                                ngbTooltip="Tooltip on bottom">Tooltip on bottom
+                        </button>
+                        <button type="button" class="btn btn-info" placement="left"
+                                ngbTooltip="Tooltip on left">Tooltip on left
+                        </button>
+                        <button type="button" class="btn btn-info" placement="right"
+                                ngbTooltip="Tooltip on right">Tooltip on right
+                        </button>
+                    </div>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="HTML Tags">
+                <div card-body>
+                    <p class="text-muted">And with custom HTML added:</p>
+
+                    <button type="button" class="btn btn-secondary"
+                            [ngbTooltip]="htmlTooltip">
+                        Tooltip with HTML
+                    </button>
+                    <ng-template #htmlTooltip>
+                        <em>New</em> <u>Tooltip</u> <b>with</b> <i>HTML</i><br>Custom message here!
+                    </ng-template>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Color Tooltips">
+                <div card-body>
+                    <p class="text-muted">We set a custom class with ex.
+                        <code>data-bs-custom-class="primary-tooltip"</code> to scope our background-color
+                        primary appearance and use
+                        it to override a local CSS
+                        variable.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        @for (variant of tooltipVariants; track $index) {
+                            <button type="button" class="btn btn-{{variant}}" placement="top"
+                                    tooltipClass="tooltip-{{variant}}"
+                                    ngbTooltip="This is a {{variant}} tooltip with a custom style.">
+                                {{ toTitleCase(variant) }} tooltip
+                            </button>
+                        }
+                    </div>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>

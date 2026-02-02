@@ -1,0 +1,109 @@
+//
+// Select 2
+//
+
+
+.multiselect__tags {
+    border: $input-border-width solid $input-border-color;
+    height: $input-height;
+    background-color: $input-bg;
+}
+
+
+.multiselect__input,
+.multiselect__single {
+    background-color: $input-bg;
+}
+
+.multiselect__tag {
+    background-color: var(--#{$prefix}primary);
+}
+
+.multiselect__content-wrapper {
+    border: $dropdown-border-width solid $dropdown-border-color;
+    box-shadow: var(--#{$prefix}box-shadow);
+    background-color: $dropdown-bg;
+    z-index: $zindex-modal + 1;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar:vertical {
+        width: 5px;
+        margin-right: 5px;
+    }
+
+    &::-webkit-scrollbar:horizontal {
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--#{$prefix}dark-rgb), 0.2);
+        border-radius: 10px;
+        margin-right: 5px;
+        border: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+}
+
+
+.multiselect__option {
+    padding: 8px;
+    min-height: 30px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.multiselect__option--group {
+    background-color: var(--#{$prefix}light);
+    color: var(--#{$prefix}body-color);
+}
+
+.multiselect__option--group.multiselect__option--highlight::after {
+    background-color: var(--#{$prefix}light);
+}
+
+
+.multiselect__option--selected {
+    background-color: var(--#{$prefix}light);
+    color: var(--#{$prefix}body-color);
+}
+
+.multiselect__option--disabled.multiselect__option--highlight {
+    background-color: var(--#{$prefix}light);
+}
+
+.multiselect__option::after {
+    line-height: 30px;
+    font-size: 13px;
+}
+
+.multiselect__option--highlight {
+    background: var(--#{$prefix}primary);
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: var(--#{$prefix}danger);
+    color: var(--#{$prefix}white);
+}
+
+
+.multiselect__option--disabled {
+    background: var(--#{$prefix}light) !important;
+    color: var(--#{$prefix}dark) !important;
+    cursor: text;
+    pointer-events: none;
+}
+
+.multiselect--above .multiselect__content-wrapper {
+    border-top-color: var(--#{$prefix}border-color);
+}

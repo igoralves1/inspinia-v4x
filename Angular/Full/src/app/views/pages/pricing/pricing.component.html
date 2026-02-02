@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Pages" title="Pricing"/>
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h3 class="fw-bold mt-4">Find the Perfect Fit</h3>
+                        <div class="fs-24">
+                            <ng-icon name="tablerArrowLeftRhombus" class="text-primary me-2"/>
+                            <ng-icon name="tablerArrowRightRhombus" class="text-primary"/>
+                        </div>
+                        <p class="fst-italic fs-md">Not sure which plan suits you best? Check out our Pricing Guide for
+                            detailed insights.</p>
+                    </div>
+
+                    <div class="px-xxl-4 mt-5">
+                        <div class="row">
+                            @for (plan of plans; track $index) {
+                                <div class="col-lg-6 col-xl-4">
+                                    <app-pricing-card [plan]="plan"/>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

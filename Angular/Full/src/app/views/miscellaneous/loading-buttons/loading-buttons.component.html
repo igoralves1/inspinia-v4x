@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Miscellaneous" title="Loading Button"/>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-block">
+                    <h4 class="card-title mb-1">Ladda</h4>
+                    <p class="text-muted mb-0">A UI concept which merges loading indicators into the action that invoked
+                        them. Primarily intended for use with forms where it gives users immediate feedback upon submit
+                        rather than leaving them wondering while the browser does its thing.</p>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="table-responsive-sm">
+                        <table class="table mb-0">
+                            <tbody>
+                                @for (button of buttonList; track $index) {
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <h5 class="mb-0 text-capitalize">{{ button.title }}</h5>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-{{button.color}} ladda-button"
+                                                    [attr.data-style]="button.buttonStyle"
+                                                    [ladda]="isLoading[button.buttonStyle]" [style]="button.buttonStyle"
+                                                    (click)="runLadda(button.buttonStyle)">
+                                                Submit
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

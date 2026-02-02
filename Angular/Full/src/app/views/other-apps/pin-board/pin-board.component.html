@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <app-page-title title="Pin Board" subTitle="Apps"/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-transparent">
+                <div class="card-header justify-content-between">
+                    <h5 class="card-title">Manage Your Notes</h5>
+                    <button class="btn btn-success rounded-pill" (click)="openAddModal(addNoteModal)">Add New</button>
+                </div>
+
+                <div class="card-body">
+                    <div class="pin-board d-flex flex-wrap">
+                        @for (note of pinNotes; track $index; let i = $index) {
+                            <div class="pin-board-item bg-{{note.variant}}-subtle">
+                                <app-pin-board-card
+                                    [note]="note"
+                                    (delete)="deleteNote(i)">
+                                </app-pin-board-card>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<ng-template #addNoteModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Add New Note</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form #noteForm="ngForm">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="newNote.title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="newNote.description" name="description"
+                          required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Variant</label>
+                <select class="form-select" [(ngModel)]="newNote.variant" name="variant" required>
+                    <option value="primary">Primary</option>
+                    <option value="danger">Danger</option>
+                    <option value="warning">Warning</option>
+                    <option value="info">Info</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="success">Success</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+        <button class="btn btn-primary" [disabled]="!noteForm.form.valid" (click)="addNote(); modal.close()">Add
+        </button>
+    </div>
+</ng-template>

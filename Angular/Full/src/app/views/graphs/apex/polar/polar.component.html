@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <app-page-title title="Ploar Area Apexchart" subTitle="Charts" />
+
+  <div class="row">
+    <div class="col-xl-6">
+      <app-ui-card title="Basic Polar Area Chart">
+        <div card-body class="p-3">
+          <app-apexchart [getOptions]="basicPolarAreaChart" />
+        </div>
+      </app-ui-card>
+    </div>
+
+    <div class="col-xl-6">
+      <app-ui-card title="Monochrome Polar Area">
+        <div card-body class="p-3">
+          <app-apexchart [getOptions]="monochromePolarAreaChart" />
+        </div>
+      </app-ui-card>
+    </div>
+  </div>
+</div>

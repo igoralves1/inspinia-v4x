@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Miscellaneous" title="Live Favicon" />
+
+    <div class="row">
+        <div class="col-lg-12">
+            <app-ui-card title="Favicon Notification (Tinycon Alternative)">
+                <div  card-body>
+                    <strong>Display Notifications on Favicon</strong>
+                    <p>
+                        Tinycon is a small library that lets you add dynamic notifications to the browser tab favicon.
+                        You can show badge counts, change icon colors, and provide visual alerts when the user’s
+                        attention is needed.
+                    </p>
+
+                    <p>
+                        For browsers that don’t support canvas or dynamic favicons, Tinycon automatically falls back to
+                        updating the document title with a count.
+                    </p>
+
+                    <div class="text-center p-3 gap-1 d-flex justify-content-center">
+                        <a href="javascript:void(0)" class="btn btn-light" (click)="setBadge(1, '#f03d25')">Set Icon to
+                            1</a>
+                        <a href="javascript:void(0)" class="btn btn-light" (click)="setBadge(1000, '#f03d25')">Set Icon
+                            to 1000</a>
+                        <a href="javascript:void(0)" class="btn btn-light" (click)="setBadge('In', '#f03d25')">Set Icon
+                            to "In"</a>
+                        <a href="javascript:void(0)" class="btn btn-primary" (click)="setBadge(8, '#e0913b')">Set Icon
+                            with Custom Color</a>
+                    </div>
+
+                    <h4> Options </h4>
+                    <p>Tinycon supports the following customization options:</p>
+                    <ul>
+                        <li><strong>width</strong>: Width of the badge bubble</li>
+                        <li><strong>height</strong>: Height of the badge bubble</li>
+                        <li><strong>font</strong>: CSS font style for the badge text</li>
+                        <li><strong>colour</strong>: Text color inside the badge</li>
+                        <li><strong>background</strong>: Background color of the badge</li>
+                        <li><strong>fallback</strong>: Show count in page title if favicon updates aren't supported</li>
+                        <li><strong>abbreviate</strong>: Shorten large numbers (e.g., 1000 → 1k)</li>
+                    </ul>
+                </div>
+            </app-ui-card>
+
+        </div>
+    </div>
+
+</div>

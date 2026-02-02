@@ -1,0 +1,181 @@
+<div class="container-fluid">
+    <app-page-title title="Invoices" subTitle="Invoice List"/>
+    <div class="row">
+        <div class="col-12">
+            <div data-table data-table-rows-per-page="8" class="card">
+                <div class="card-header border-light justify-content-between">
+                    <div class="d-flex gap-2">
+                        <div class="app-search">
+                            <input [(ngModel)]="tableService.searchTerm" type="text" class="form-control"
+                                   placeholder="Search invoices...">
+                            <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                        </div>
+                        @if (hasSelection) {
+                            <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+                        }
+                        <a routerLink="/invoices/new" class="btn btn-purple rounded-circle btn-icon">
+                            <ng-icon
+                                name="tablerPlus" class="fs-lg"/>
+                        </a>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="me-2 fw-semibold">Filter By:</span>
+
+                        <div class="app-search">
+                            <select [(ngModel)]="filterStatus"
+                                    (ngModelChange)="tableService.setFilter('status', filterStatus)"
+                                    class="form-select form-control my-1 my-md-0">
+                                <option value="All">Status</option>
+                                <option value="Paid">Paid</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Overdue">Overdue</option>
+                                <option value="Draft">Draft</option>
+                            </select>
+                            <lucide-angular [img]="LucideCircleCheckBig" class="app-search-icon text-muted"/>
+                        </div>
+
+                        <div>
+                            <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="8">8</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="15">15</option>
+                                <option [ngValue]="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+                        <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                        <tr class="text-uppercase fs-xxs">
+                            <th class="ps-3" style="width: 1%;">
+                                <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                                       class="form-check-input form-check-input-light fs-14 mt-0"
+                                       type="checkbox" value="option">
+                            </th>
+                            <th>ID</th>
+                            <th>Create & End Date</th>
+                            <th sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">Clients
+                                Name
+                            </th>
+                            <th sortable="purchase" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Purchase
+                            </th>
+                            <th sortable="amount" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Amount
+                            </th>
+                            <th sortable="status" (sort)="tableService.setSort($event.column, $event.direction)">
+                                Status
+                            </th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ((total$ | async)! > 0) {
+                                @for (invoice of records$ | async; track $index; let i = $index) {
+                                    <tr>
+                                        <td class="ps-3">
+                                            <input
+                                                class="form-check-input form-check-input-light fs-14 file-item-check mt-0"
+                                                type="checkbox" [(ngModel)]="invoice.selected"
+                                                (change)="toggleSingleSelection()"/>
+                                        </td>
+                                        <td>
+                                            <h5 class="m-0 d-flex align-items-center gap-1">
+                                                <ng-icon name="tablerFileInvoice" class="fs-lg"
+                                                         [class]="
+                                                  invoice.status === 'pending' ? 'text-warning' :
+                                                  invoice.status === 'overdue' ? 'text-danger' :
+                                                  invoice.status === 'draft' ? 'text-primary' : 'text-success'
+                                                "></ng-icon>
+                                                <a [routerLink]="['/invoice', invoice.id]"
+                                                   class="link-reset fw-semibold">#{{ invoice.id }}</a>
+                                            </h5>
+                                        </td>
+                                        <td>{{ invoice.date }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-start align-items-center gap-2">
+                                                @if (invoice.avatar) {
+                                                    <div class="avatar avatar-sm">
+                                                        <img [src]="invoice.avatar" [alt]="invoice.name"
+                                                             class="img-fluid rounded-circle"/>
+                                                    </div>
+                                                } @else {
+
+                                                    <div class="avatar-sm flex-shrink-0">
+                                                      <span class="avatar-title text-bg-info fw-bold rounded-circle">
+                                                        {{ generateInitials(invoice.name) }}
+                                                      </span>
+                                                    </div>
+                                                }
+
+                                                <div>
+                                                    <h5 class="text-nowrap fs-base mb-0 lh-base">
+                                                        <a class="link-reset"
+                                                           routerLink="/pages/profile">{{ invoice.name }}</a>
+                                                    </h5>
+                                                    <p class="text-muted fs-xs mb-0">{{ invoice.email }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ invoice.purchase }}</td>
+                                        <td>{{ currency }}{{ invoice.amount && invoice.amount.toFixed(2) }} USD</td>
+                                        <td>
+                            <span class="badge badge-label"
+                                          [class]="invoice.status === 'pending' ? 'text-warning bg-warning-subtle ' : invoice.status === 'overdue' ? 'text-danger bg-danger-subtle ' : invoice.status === 'draft' ? 'text-primary bg-primary-subtle ' : 'text-success bg-success-subtle ' ">
+                              {{ toTitleCase(invoice.status) }}
+                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                                <a [routerLink]="['/invoice', invoice.id]"
+                                                   class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEye" class="fs-lg"/>
+                                                </a>
+                                                <a [routerLink]="[]" class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerEdit" class="fs-lg"/>
+                                                </a>
+                                                <button (click)="tableService.deleteItem(invoice)"
+                                                        class="btn btn-light btn-icon btn-sm rounded-circle">
+                                                    <ng-icon name="tablerTrash" class="fs-lg"/>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            } @else {
+                                <tr class="no-results">
+                                    <td colspan="11" class="text-center text-muted py-3">Nothing found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer border-0">
+                    @if ((total$ | async)! > 0) {
+                        <div
+                            class="d-flex justify-content-between pagination-boxed align-items-center">
+                            {{ tableService.showingRange }} invoices
+
+                            <ngb-pagination
+                                [collectionSize]="(total$ | async)!"
+                                [(page)]="tableService.page"
+                                [pageSize]="tableService.pageSize"
+                            >
+                                <ng-template ngbPaginationPrevious>
+                                    <ng-icon name="tablerChevronLeft"/>
+                                </ng-template>
+                                <ng-template ngbPaginationNext>
+                                    <ng-icon name="tablerChevronRight"/>
+                                </ng-template>
+                            </ngb-pagination>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

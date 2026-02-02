@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <app-page-title title="Candlestick Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Simple Candlestick Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="simpleCandlestickChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <apex-combo-candlestick-chart/>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Category X-Axis">
+                <div card-body>
+                    <app-apexchart [getOptions]="xAxisCandlestickChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Candlestick with Line">
+                <div card-body>
+                    <app-apexchart [getOptions]="candlestickWithLineChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

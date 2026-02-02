@@ -1,0 +1,147 @@
+<template>
+    <MainLayout>
+        <div class="container-fluid">
+            <PageBreadcrumb title="Table With Checkbox" />
+
+            <UICard title="Table with Checkbox" body-class="p-0">
+                <div class="card-header justify-content-between d-flex flex-wrap gap-2 align-items-center">
+                    <div class="app-search">
+                        <input v-model="globalFilter" type="search" class="form-control"
+                            placeholder="Search company name..." />
+                        <Icon  icon="lucide:search" class="app-search-icon text-muted" />
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <div>
+                            <BFormSelect v-model="perPage" :options="perPageOptions"
+                                class="form-control my-1 my-md-0" />
+                        </div>
+                    </div>
+                </div>
+
+                <TanstackTable :table="table" class-name="my-custom-table" :delete-item="deleteRow" />
+                <BCardFooter class="border-0">
+                    <TablePagination v-model:currentPage="currentPage" :per-page="perPage" :total-items="totalRows"
+                        label="companies" />
+                </BCardFooter>
+            </UICard>
+        </div>
+    </MainLayout>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, h } from 'vue'
+import {
+    useVueTable,
+    createColumnHelper,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    getFacetedRowModel,
+    getFacetedUniqueValues,
+} from '@tanstack/vue-table'
+
+import UICard from '@/components/UICard.vue'
+import TanstackTable from '@/components/TanstackTable.vue'
+import { tableData as tablesData, type CompanyType } from '../data'
+import TablePagination from '@/components/TablePagination.vue'
+import { BCardFooter } from 'bootstrap-vue-next'
+import PageBreadcrumb from '@/components/PageBreadcrumb.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+import { Icon } from '@iconify/vue'
+import { usePageMeta } from '@/composables/usePageMeta'
+
+const tableData = ref<CompanyType[]>(tablesData)
+const rowSelection = ref({})
+
+const perPageOptions = [5, 8, 10, 20, 50]
+
+const columnHelper = createColumnHelper<CompanyType>()
+
+
+const columns = [
+    columnHelper.display({
+        id: 'select',
+        header: ({ table }) =>
+            h('input', {
+                type: 'checkbox',
+                class: 'form-check-input form-check-input-light fs-14',
+                checked: table.getIsAllRowsSelected(),
+                indeterminate: table.getIsSomeRowsSelected(),
+                onChange: table.getToggleAllRowsSelectedHandler(),
+            }),
+        cell: ({ row }) =>
+            h('input', {
+                type: 'checkbox',
+                class: 'form-check-input form-check-input-light fs-14',
+                checked: row.getIsSelected(),
+                disabled: !row.getCanSelect(),
+                onChange: row.getToggleSelectedHandler(),
+            }),
+    }),
+    columnHelper.accessor('id', { header: 'ID', }),
+    columnHelper.accessor('company', { header: 'Company', }),
+    columnHelper.accessor('symbol', { header: 'Symbol', }),
+    columnHelper.accessor('price', {
+        header: 'Price',
+    }),
+    columnHelper.accessor('change', { header: 'Change', }),
+    columnHelper.accessor('volume', { header: 'Volume', }),
+    columnHelper.accessor('marketCap', { header: 'MarketCap', }),
+    columnHelper.accessor('rating', { header: 'Rating', }),
+    columnHelper.accessor('status', {
+        header: 'Status',
+    }),
+]
+
+const globalFilter = ref('')
+
+const table = useVueTable({
+    data: computed(() => tableData.value),
+    columns,
+    state: {
+        get globalFilter() {
+            return globalFilter.value
+        },
+        get rowSelection() {
+            return rowSelection.value
+        },
+    },
+    enableRowSelection: true,
+    onRowSelectionChange: (updater: any) => {
+        rowSelection.value = typeof updater === 'function' ? updater(rowSelection.value) : updater
+    },
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+})
+
+
+const currentPage = computed({
+    get: () => table.getState().pagination.pageIndex + 1,
+    set: (val: number) => {
+        table.setPageIndex(val - 1)
+    },
+})
+
+const perPage = computed({
+    get: () => table.getState().pagination.pageSize,
+    set: (val: number) => {
+        table.setPageSize(val)
+    },
+})
+
+perPage.value = 8
+
+const totalRows = computed(() => table.getFilteredRowModel().rows.length)
+function deleteRow(id: number) {
+    tableData.value = tableData.value.filter((c: CompanyType) => c.id !== id)
+}
+
+usePageMeta('Tanstack Table with Checkbox')
+</script>

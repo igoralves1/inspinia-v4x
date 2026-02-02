@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <app-page-title title="Pie Echart" subTitle="Charts"/>
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Pie Chart">
+                <div card-body>
+                    <app-echart [getOptions]="pieChart" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Doughnut Pie Chart">
+                <div card-body>
+                    <app-echart [getOptions]="doughnutPie" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Doughnut Rounded Pie Chart">
+                <div card-body>
+                    <app-echart [getOptions]="roundedPie" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Multiple Pie Chart">
+                <div card-body>
+                    <app-echart [getOptions]="multiplePie" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Pie Label Align Chart">
+                <div card-body>
+                    <app-echart [getOptions]="labelAlign" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Nightingale Map">
+                <div card-body>
+                    <app-echart [getOptions]="nightingaleMap" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+        <div class="col-xl-6">
+            <app-ui-card title="Pie Edge Align Chart">
+                <div card-body>
+                    <app-echart [getOptions]="edgeAlign" height="300px" class="rounded-3 overflow-hidden"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

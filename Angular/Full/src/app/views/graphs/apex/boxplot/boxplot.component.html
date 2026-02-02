@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <app-page-title title="Boxplot Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Boxplot">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicBox"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Scatter Boxplot">
+                <div card-body>
+                    <app-apexchart [getOptions]="scatterBox"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Horizontal BoxPlot">
+                <div card-body>
+                    <app-apexchart [getOptions]="horizontalBox"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Miscellaneous" title="PDF Viewer" />
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="btn-group text-nowrap align-items-center">
+                            <button (click)="goToPrevPage()" class="btn btn-dark">
+                                <ng-icon name="tablerArrowLeft" />
+                                <span class="d-none d-sm-inline ms-2">Previous</span>
+                            </button>
+
+                            <button (click)="goToNextPage()" class="btn btn-dark">
+                                <ng-icon name="tablerArrowRight" />
+                                <span class="d-none d-sm-inline ms-2">Next</span>
+                            </button>
+
+                            <button (click)="zoomIn()" class="btn btn-dark">
+                                <ng-icon name="tablerZoomIn" />
+                                <span class="d-none d-sm-inline ms-2">Zoom In</span>
+                            </button>
+
+                            <button (click)="zoomOut()" class="btn btn-dark">
+                                <ng-icon name="tablerZoomOut" />
+                                <span class="d-none d-sm-inline ms-2">Zoom Out</span>
+                            </button>
+
+                            <button (click)="zoomFit()" class="btn btn-dark rounded-end-3">100%</button>
+
+                            <input type="number" class="form-control ms-2" [(ngModel)]="currentPage" [min]="1"
+                                [max]="totalPages" style="width: 60px" />
+                            <span class="ms-1">/ {{ totalPages }}</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center overflow-auto mt-3">
+                        <pdf-viewer [src]="pdfSrc" [show-borders]="true" [zoom-scale]="'page-height'"
+                            [page]="currentPage" [zoom]="zoom" (after-load-complete)="afterLoadComplete($event)"
+                            [show-all]="false" [original-size]="false" [render-text]="true"
+                            style="height: 100vh;"></pdf-viewer>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

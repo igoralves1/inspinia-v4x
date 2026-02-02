@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <app-page-title title="Breadcrumb" subTitle="UI" />
+</div>
+<div class="container-xl">
+    <div class="row">
+        <div class="col-xl-12">
+            <app-ui-card title="Examples">
+                <div card-body>
+                    <p class="text-muted mb-2">
+                        Indicate the current page’s location within a navigational hierarchy that automatically adds
+                        separators via CSS.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold"
+                       href="https://getbootstrap.com/docs/5.3/components/breadcrumb/" target="_blank">
+                        Breadcrumb on Bootstrap
+                        <ng-icon name="tablerChevronRight" class="ms-1"></ng-icon>
+
+                    </a>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="Basic">
+                <div card-body>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 py-2">
+                            <li class="breadcrumb-item active" aria-current="page">Home</li>
+                        </ol>
+                    </nav>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 py-2">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 py-2">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Library</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-ui-card title="With Icons">
+                <div card-body>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-2">
+                            <li class="breadcrumb-item active" aria-current="page"><ng-icon name="tablerSmartHome"
+                                                                                            class="me-1"></ng-icon>Home</li>
+                        </ol>
+                    </nav>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-2">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);"><ng-icon
+                                name="tablerSmartHome"></ng-icon>
+                                Home</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-0">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);"><ng-icon
+                                name="tablerSmartHome"></ng-icon>
+                                Home</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Library</a></li>
+                            <li class="d-flex align-items-center text-muted mx-1" aria-current="page"><ng-icon
+                                name="tablerChevronRight"></ng-icon></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        </ol>
+                    </nav>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

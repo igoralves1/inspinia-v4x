@@ -1,0 +1,122 @@
+<div class="container-fluid">
+    <app-page-title title="Lucide" subTitle="Icons"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="card">
+                <div class="card-header d-block">
+                    <h4 class="card-title mb-1 d-flex align-items-center gap-2">
+                        <lucide-angular [img]="LucideLayoutDashboard" class="fs-xl"/>
+                        Overview
+                    </h4>
+                    <p class="mb-0 text-muted">Lucide is an open-source library of clean, scalable SVG icons for web and
+                        app development, offering easy integration and customization.</p>
+                </div>
+
+
+                <div class="card-body">
+                    <h4 class="mt-0 fs-base mb-1">Usage</h4>
+                    <code>&lt;lucide-angular [img]="LucideIconname"/&gt;</code>
+
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <lucide-angular [img]="LucideCamera" class="fs-3"/>
+                        <lucide-angular [img]="LucideHeart" class="fs-3"/>
+                        <lucide-angular [img]="LucideStar" class="fs-3"/>
+                        <lucide-angular [img]="LucideCheck" class="fs-3"/>
+                        <lucide-angular [img]="LucideBell" class="fs-3"/>
+                        <lucide-angular [img]="LucideCloud" class="fs-3"/>
+                        <lucide-angular [img]="LucideUser" class="fs-3"/>
+                    </div>
+
+
+                </div> <!-- end card-body-->
+                <div class="card-body border-top border-dashed">
+                    <h4 class="mt-0 fs-base mb-1">Colors</h4>
+                    <code>&lt;lucide-angular [img]="LucideIconname" class=&quot;text-xx&quot;/&gt;</code>
+
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <lucide-angular [img]="LucideHome" class="fs-3 text-primary"/>
+                        <lucide-angular [img]="LucideSettings" class="fs-3 text-secondary"/>
+                        <lucide-angular [img]="LucideCalendar" class="fs-3 text-success"/>
+                        <lucide-angular [img]="LucideMessageCircle" class="fs-3 text-info"/>
+                        <lucide-angular [img]="LucideFlag" class="fs-3 text-warning"/>
+                        <lucide-angular [img]="LucideFolder" class="fs-3 text-danger"/>
+                        <lucide-angular [img]="LucideGlobe" class="fs-3 text-light"/>
+                        <lucide-angular [img]="LucideKey" class="fs-3 text-dark"/>
+                        <lucide-angular [img]="LucideLayers" class="fs-3 text-purple"/>
+                    </div>
+
+                </div>
+
+                <div class="card-body border-top border-dashed">
+                    <h4 class="mt-0 fs-base mb-1">Fill Colors</h4>
+                    <code>&lt;lucide-angular [img]="LucideIconname" class=&quot;text-xx fill-xx&quot;/&gt;</code>
+
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <lucide-angular [img]="LucideHome" class="fs-3 text-primary fill-primary"/>
+                        <lucide-angular [img]="LucideSettings" class="fs-3 text-secondary fill-secondary"/>
+                        <lucide-angular [img]="LucideCalendar" class="fs-3 text-success fill-success"/>
+                        <lucide-angular [img]="LucideMessageCircle" class="fs-3 text-info fill-info"/>
+                        <lucide-angular [img]="LucideFlag" class="fs-3 text-warning fill-warning"/>
+                        <lucide-angular [img]="LucideFolder" class="fs-3 text-danger fill-danger"/>
+                        <lucide-angular [img]="LucideGlobe" class="fs-3 text-light fill-light"/>
+                        <lucide-angular [img]="LucideKey" class="fs-3 text-dark fill-dark"/>
+                        <lucide-angular [img]="LucideLayers" class="fs-3 text-purple fill-purple"/>
+                    </div>
+
+                </div>
+
+                <div class="card-body border-top border-dashed">
+                    <h4 class="mt-0 fs-base mb-1">Sizes</h4>
+                    <code>&lt;lucide-angular [img]="LucideIconname" class=&quot;ts-xx&quot;/&gt;</code>
+
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <lucide-angular [img]="LucidePhone" class="fs-1"/>
+                        <lucide-angular [img]="LucideBadgeDollarSign" class="fs-2"/>
+                        <lucide-angular [img]="LucideMonitor" class="fs-3"/>
+                        <lucide-angular [img]="LucideTablet" class="fs-4"/>
+                        <lucide-angular [img]="LucideGamepad2" class="fs-5"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-6"/>
+                    </div>
+
+
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <lucide-angular [img]="LucideWatch"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-sm"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-lg"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-xl"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-xxl"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-24"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-32"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-36"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-42"/>
+                        <lucide-angular [img]="LucideWatch" class="fs-60"/>
+                    </div>
+
+                </div> <!-- end card-body-->
+
+                <div class="card-body border-top border-dashed">
+                    <h4 class="mt-0 mb-3">Icons</h4>
+
+                    <div class="d-flex flex-wrap align-items-center text-center gap-2">
+                        @for (item of lucideIcons; track $index) {
+                            <div class="avatar-xxl">
+                        <span
+                            class="avatar-title flex-column gap-1 border border-dashed rounded-3 overflow-hidden text-truncate text-center p-1">
+                         <lucide-angular [img]="item.icon"  class="fs-xxl"/>
+                          <span class="fw-semibold d-block w-100 text-truncate">{{ item.name }}</span>
+                        </span>
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="text-center mt-3">
+                        <a href="https://lucide.dev/icons/" target="_blank" class="btn btn-danger">View All Icons</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

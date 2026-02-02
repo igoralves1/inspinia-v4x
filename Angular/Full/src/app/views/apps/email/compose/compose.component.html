@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <app-page-title title="Email" subTitle="Apps"/>
+
+    <div class="outlook-box email-app">
+        <ng-template #content let-offcanvas>
+            <ngx-simplebar style="height: 100%">
+                <app-email-sidebar/>
+            </ngx-simplebar>
+        </ng-template>
+        <app-email-sidebar class="d-none d-lg-block outlook-left-menu outlook-left-menu-sm"/>
+
+        <div class="card h-100 mb-0 rounded-start-0 flex-grow-1 border-start-0">
+            <div class="card-header d-lg-none d-flex gap-2">
+                <button class="btn btn-default btn-icon" (click)="open(content)" type="button">
+                    <ng-icon name="tablerMenu2" class="fs-lg"/>
+                </button>
+
+                <div class="app-search">
+                    <input type="text" class="form-control" placeholder="Search mails...">
+                    <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+                </div>
+            </div>
+
+            <div class="card-header card-bg justify-content-between">
+                <h4 class="card-title">Compose Message</h4>
+            </div>
+            <ngx-simplebar style="height: calc(100% - 120px);">
+                <div class="card-body p-0">
+                    <div class="app-search input-group border-bottom border-dashed ps-2 pe-4">
+                        <input type="text" class="form-control py-3 border-0" placeholder="Enter emails..">
+                        <span class="app-search-icon fw-semibold fs-sm">To:</span>
+                        <button class="btn btn-link fs-sm px-2 text-decoration-underline text-reset fw-semibold"
+                                type="button" (click)="isCollapsed=!isCollapsed">Cc
+                        </button>
+                        <button class="btn btn-link fs-sm px-2 text-decoration-underline text-reset fw-semibold"
+                                type="button" (click)="isCollapsed2=!isCollapsed2">Bcc
+                        </button>
+                    </div>
+
+                    <div class="collapse" [ngbCollapse]="isCollapsed">
+                        <div class="app-search input-group border-bottom border-dashed ps-2 pe-4">
+                            <input type="text" class="form-control py-3 border-0" placeholder="Enter emails..">
+                            <span class="app-search-icon fw-semibold fs-sm">Cc:</span>
+                            <button class="btn btn-link px-2 text-muted fw-semibold" type="button"
+                                    (click)="isCollapsed=!isCollapsed">
+                                <ng-icon name="tablerX" class="fs-xl"/>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="collapse" [ngbCollapse]="isCollapsed2">
+                        <div class="app-search input-group border-bottom border-dashed ps-2 pe-4">
+                            <input type="text" class="form-control py-3 border-0" placeholder="Enter emails..">
+                            <span class="app-search-icon fw-semibold fs-sm">Bcc:</span>
+                            <button class="btn btn-link px-2 text-muted fw-semibold" type="button"
+                                    (click)="isCollapsed2=!isCollapsed2">
+                                <ng-icon name="tablerX" class="fs-xl"/>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="border-bottom border-dashed ps-2 pe-4">
+                        <input type="text" class="form-control py-3 fs-sm fw-semibold border-0" placeholder="Subject">
+                    </div>
+
+                    <div class="email-editor">
+                        <quill-editor [(ngModel)]="editorContent" theme="snow" [modules]="editorConfig"
+                                      style="height: 300px" class="w-100"></quill-editor>
+                    </div>
+                    <div class="bg-light-subtle p-2 border-light border-bottom">
+                        <div class="d-flex gap-1 align-items-center">
+                            <div class="btn-group" ngbDropdown>
+                                <button type="button" class="btn btn-primary">
+                                    <ng-icon name="tablerSend2" class="me-2"/>
+                                    Send
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle-split drop-arrow-none"
+                                        ngbDropdownToggle>
+                                    <ng-icon name="tablerChevronDown" />
+                                </button>
+                                <div ngbDropdownMenu>
+                                    <a ngbDropdownItem>Send & Archive</a>
+                                    <a ngbDropdownItem>Schedule Send</a>
+                                    <a ngbDropdownItem>Save as Draft</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a ngbDropdownItem>Discard</a>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-sm btn-icon btn-light ms-auto" data-bs-toggle="tooltip"
+                                     ngbTooltip="Settings"><ng-icon
+                                name="tablerSettings"/></button>
+                            <button type="button" class="btn btn-sm btn-icon btn-soft-danger"
+                                    ngbTooltip="Delete"><ng-icon
+                                name="tablerTrash"/></button>
+                        </div>
+                    </div>
+
+                </div>
+            </ngx-simplebar>
+
+        </div>
+    </div>
+</div>

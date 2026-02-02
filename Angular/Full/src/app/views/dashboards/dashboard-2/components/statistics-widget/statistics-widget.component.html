@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header d-flex border-dashed justify-content-between align-items-center">
+        <h5 class="card-title">{{ item.title }}</h5>
+        @if (item.badge) {
+        <span [class]="`badge badge-soft-${item.badge.variant}`"> {{ item.badge.text }}</span>
+        }
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            @if (item.chartOptions) {
+            <app-echart [getOptions]="item.chartOptions" class="donut-chart" height="60px"
+                        width="60px"/>
+            }
+            <div class="text-end">
+                <h3 class="mb-2 fw-normal">{{ item.prefix }}<span [countUp]="item.value"
+                                                                 >0</span>{{ item.suffix }}
+                </h3>
+                <p class="mb-0 text-muted"><span>{{ item.description }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

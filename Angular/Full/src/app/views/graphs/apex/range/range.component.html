@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <app-page-title title="Range Apexcharts" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Range Area">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicRangeArea"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Range Area With Line">
+                <div card-body>
+                    <app-apexchart [getOptions]="rangeAreaWithLine"></app-apexchart>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

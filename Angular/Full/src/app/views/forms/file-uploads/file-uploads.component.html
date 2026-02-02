@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <app-page-title subTitle="forms" title="File Uploads" />
+
+</div>
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <app-ui-card title="Dropzone">
+                <ng-container card-body>
+                    <div class="pb-3">
+                        <p class="text-muted mb-2">
+                            DropzoneJS is an open source library that provides drag’n’drop file uploads with image
+                            previews.
+                        </p>
+
+                        <a class="btn btn-link p-0 fw-semibold" href="https://www.dropzone.dev/" target="_blank">
+                            Dropzone on View Official Website
+                            <ng-icon name="tablerChevronRight" class="ms-1" />
+                        </a>
+                    </div>
+
+                    <div class=" pt-0">
+                        <FileUploader />
+
+                    </div>
+                </ng-container>
+            </app-ui-card>
+
+            <app-ui-card title="Filepond">
+                <ng-container card-body>
+                    <div class="pb-3">
+                        <p class="text-muted mb-2">
+                            A JavaScript library that can upload anything you throw at it, optimizes images for faster
+                            uploads, and offers a great, accessible, silky smooth user experience.
+                        </p>
+
+                        <a class="btn btn-link p-0 fw-semibold" href="https://pqina.nl/filepond/" target="_blank">
+                            Filepond on View Official Website
+                            <ng-icon name="tablerChevronRight" class="ms-1"/>
+                        </a>
+                    </div>
+
+                    <div class="pb-3 pt-0">
+
+                        <div class="mb-3">
+                            <h5 class="mb-3">Basic Example</h5>
+                            <div class="filepond-uploader">
+                                <file-pond name="filepond" [options]="basicFilePondConfig" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5 class="mb-3">Two Grid Example</h5>
+                            <div class="filepond-uploader two-grid">
+                                <file-pond name="filepond" [options]="basicFilePondConfig"
+                                    className="filepond-input-multiple" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 class="mb-3">Three Grid Example</h5>
+                            <div class="filepond-uploader three-grid">
+                                <file-pond name="filepond" [options]="basicFilePondConfig"
+                                    className="filepond-input-multiple" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-top border-dashed"></div>
+
+                    <div class="pt-3">
+                        <h4 class="card-title mb-2">Profile Picture</h4>
+
+                        <p class="text-muted">FilePond is a JavaScript library with profile picture-shaped file upload
+                            variation.</p>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="avatar-xxl">
+                                    <file-pond name="filepond" [options]="userFilePondConfig"
+                                        className="filepond-input-circle" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="avatar-xxl rounded">
+                                    <file-pond name="filepond" [options]="userFilePondConfig" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>

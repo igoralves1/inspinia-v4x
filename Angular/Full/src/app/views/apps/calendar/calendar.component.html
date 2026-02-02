@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <app-page-title title="Calendar" subTitle="Apps"/>
+
+    <div class="outlook-box">
+        <div class="card h-100 mb-0 d-none d-lg-flex rounded-end-0">
+            <div class="card-body">
+                <button class="btn btn-primary w-100 btn-new-event" (click)="openModal()">
+                    <ng-icon name="tablerPlus" class="me-2"/>
+                    Create New Event
+                </button>
+
+                <div id="external-events">
+                    <p class="text-muted mt-2 fst-italic fs-xs mb-3">Drag and drop your event or click in the
+                        calendar</p>
+                    @for (event of externalEvents; track i; let i = $index) {
+                        <div
+                            class="external-event fc-event bg-{{event.variant}}-subtle text-{{event.variant}} border-start border-3 border-{{event.variant}} fw-semibold"
+                            [attr.data-variant]="event.variant">
+                            <ng-icon name="tablerCircleFill" class="me-2"/>
+                            {{ event.title }}
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card h-100 mb-0 rounded-start-0 flex-grow-1 border-start-0">
+            <div class="d-lg-none d-inline-flex card-header">
+                <button class="btn btn-primary btn-new-event" (click)="openModal()">
+                    <ng-icon name="tablerPlus" class="me-2"/>
+                    Create New Event
+                </button>
+            </div>
+
+            <div class="card-body">
+                <ngx-simplebar style="height: 100%;">
+                    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+                </ngx-simplebar>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #eventModal>
+    <div class="modal-header">
+        <h5 class="modal-title">Create / Edit Event</h5>
+        <button type="button" class="btn-close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-2">
+            <label class="form-label">Event Name</label>
+            <input class="form-control" [(ngModel)]="currentEventTitle"/>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Category</label>
+            <select class="form-select" [(ngModel)]="currentEventVariant">
+                <option value="" disabled>Select category</option>
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="success">Success</option>
+                <option value="danger">Danger</option>
+                <option value="info">Info</option>
+                <option value="warning">Warning</option>
+                <option value="dark">Dark</option>
+                <option value="purple">Purple</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-between gap-2">
+            @if (currentEditingEvent) {
+            <button  class="btn btn-danger" (click)="deleteEvent()">Delete</button>
+            }
+            <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-light" (click)="modalRef.close()">Close</button>
+                <button class="btn btn-primary" (click)="saveEvent()">Save</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

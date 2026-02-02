@@ -1,0 +1,421 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Forms" title="Pickers"/>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Date Range Picker</h4>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted mb-2">
+                        A versatile JavaScript component for selecting date ranges, single dates, and times with ease.
+                        Perfect for forms and dashboards, it supports calendar views, time pickers, and predefined
+                        ranges.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold" href="https://www.daterangepicker.com/" target="_blank">
+                        Date Range Picker on View Official Website
+                        <ng-icon name="tablerChevronRight" class="ms-1"/>
+                    </a>
+                </div>
+
+                <div class="border-top border-dashed"></div>
+
+                <div class="card-body">
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <h5>Date Range</h5>
+                            <p class="text-muted mb-0">Select a custom date range from the calendar.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" ngxDaterangepickerBootstrap  [showCancel]="true" [singleDatePicker]="true"
+                                   class="form-control date" id="singledaterange" [(ngModel)]="date">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <h5>Date Range Picker With Times</h5>
+                            <p class="text-muted mb-0">Includes both start and end time selection.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" ngxDaterangepickerBootstrap class="form-control date" [timePicker]="true"
+                                   [locale]="{ format: 'YYYY-MM-DD HH:mm:ss' }" [showCancel]="true"
+                                   [singleDatePicker]="true" [(ngModel)]="date2">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <h5>Single Date Picker</h5>
+                            <p class="text-muted mb-0">Select a single date (e.g., birthday).</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control date" ngxDaterangepickerBootstrap
+                                   [singleDatePicker]="true" [(ngModel)]="date3">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <h5>Predefined Date Ranges</h5>
+                            <p class="text-muted mb-0">Choose from common ranges like "Last 7 Days", etc.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative">
+                                <input class="form-control"
+                                       ngxDaterangepickerBootstrap
+                                       [(ngModel)]="selectedRangeCalendarTimeRight"
+                                       [locale]="localeTime"
+                                       [ranges]="ranges"
+                                       [timePicker]="true"
+                                       [timePickerSeconds]="true"
+                                       [timePicker24Hour]="true"
+                                       [showCustomRangeLabel]="true"
+                                       [showCancel]="true"
+                                       [linkedCalendars]="true"
+                                       [alwaysShowCalendars]="false"
+                                       [showRangeLabelOnInput]="false"
+                                       [keepCalendarOpeningWithRange]="false"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Flatpickr</h4>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted mb-2">
+                        Lightweight, powerful javascript datetimepicker with no dependencies
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold" href="https://flatpickr.js.org/" target="_blank">
+                        Flatpickr on View Official Website
+                        <ng-icon name="tablerChevronRight" class="ms-1"></ng-icon>
+                    </a>
+                </div>
+
+                <div class="border-top border-dashed"></div>
+
+                <div class="card-body">
+                    <h4 class="card-title fs-sm fw-bold mb-4"> Datepicker</h4>
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Basic</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;dateFormat: &#39;d M, Y&#39;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" mwlFlatpickr [options]="{ dateFormat: 'd M, Y' }" id="basic-datepicker"
+                                   class="form-control" [(ngModel)]="basicDate"/>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>DateTime</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;dateFormat: &#39;d M, Y H:i;,enableTime:true&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" mwlFlatpickr [(ngModel)]="dateTime" [options]="{dateFormat:'d M, Y H:i', enableTime:true}"
+                                   class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Human-Friendly Dates</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;dateFormat: &#39;F d, Y&#39;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control flatpickr-input" mwlFlatpickr
+                                   [options]="{ dateFormat: 'F d, Y' }" [(ngModel)]="humanFriendlyDate">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>MinDate and MaxDate</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;minDate: &#39;...&#39;,maxDate:&#39;...&#39;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" mwlFlatpickr class="form-control"
+                                   [options]="{altInput: true,minDate: '25-12-2021',maxDate: '29-12-2021'}"
+                                   placeholder="Select Date">
+                        </div>
+                    </div>
+
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Disabling Dates</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;dateFormat: &#39;d M, Y&#39;,disable:&#39;[...]&#39;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" mwlFlatpickr [(ngModel)]="disableDate" [options]="{dateFormat:'d M, Y',disable:['14 5,2025']}" class="form-control" data-provider="flatpickr"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Selecting Multiple Dates</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;dateFormat: &#39;d M, Y&#39;,mode:&apos;multiple&apos;&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" [(ngModel)]="multipleDate" mwlFlatpickr class="form-control"
+                                   [options]="{dateFormat:'d M, Y',mode:'multiple'}" />
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Range</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;dateFormat: &#39;d M, Y&#39;,mode:&apos;range&apos;&rbrace;&quot;</code>.
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{dateFormat:'d M, Y',mode:'range'}">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Inline</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;dateFormat: &#39;d M, Y&#39;,inline:true&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{dateFormat:'d M, Y',inline:true}" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="border-top border-dashed"></div>
+                <div class="card-body">
+                    <h4 class="card-title fs-sm fw-bold mb-4">Timepicker</h4>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Timepicker</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;noCalendar: true,enableTime:true&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{noCalendar: true,dateFormat: 'H:i',defaultHour: 1.4,enableTime: true}"
+                                   placeholder="Select Time">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>24-hour Time Picker</h5>
+                            <p class="text-muted mb-0">Set  <code> [options]=&quot;&lbrace;noCalendar: true,enableTime:true,time24hr:true&rbrace;&quot;</code></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{noCalendar: true,dateFormat: 'H:i',defaultHour: 1.4,time24hr: true,enableTime: true,mode: 'multiple'}"
+                                   placeholder="Select Time">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Time Picker w/ Limits</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;noCalendar: true,enableTime:true,maxTime:&apos;...&apos;,minTime:&apos;...&apos;&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{noCalendar: true,dateFormat: 'H:i',defaultHour: 1.4,enableTime: true,maxTime:'16:00',minTime:'13:00'}"
+                                   placeholder="Select Time">
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Preloading Time</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;noCalendar: true,enableTime:true,dateFormat:&apos;H:i&apos;&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" mwlFlatpickr
+                                   [options]="{  noCalendar: true,dateFormat: 'H:i',time24hr: false,enableTime: true,mode: 'multiple'}" />
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h5>Inline</h5>
+                            <p class="text-muted mb-0">Set
+                                <code> [options]=&quot;&lbrace;noCalendar: true,enableTime:true,inline:true&rbrace;&quot;</code>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div mwlFlatpickr [options]="{noCalendar: true,enableTime: true,inline:true}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Colorpicker</h4>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted mb-2">
+                        ngx-color - A simple, multi-themed, responsive and hackable Color-Picker library.
+                        No dependencies, no jQuery. Compatible with all CSS Frameworks e.g. Bootstrap, Materialize.
+                        Supports alpha channel, rgba, hsla, hsva and more!
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold" href="https://www.npmjs.com/package/ngx-color"
+                       target="_blank">
+                        ngx-color Colorpicker on View Official Website
+                        <ng-icon name="tablerChevronRight" class="ms-1" />
+                    </a>
+                </div>
+
+                <div class="border-top border-dashed"></div>
+
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Example</h4>
+
+
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <h5 class="fw-semibold mb-1">Sketch Demo</h5>
+                            <p class="text-muted mb-0">Use <code> &lt;color-sketch color="color"/&gt; </code>
+                                colorpicker.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <color-sketch [color]="color" (onChangeComplete)="onColorChange($event)">
+                            </color-sketch>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <h5 class="fw-semibold mb-1">Chrome Color Picker</h5>
+                            <p class="text-muted mb-0">Use <code> &lt;color-chrome color="color"/&gt; </code>
+                                colorpicker.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <color-chrome [color]="color" (onChangeComplete)="onColorChange($event)"></color-chrome>
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <h5 class="fw-semibold mb-1">Slider</h5>
+                            <p class="text-muted mb-0">Use <code> &lt;color-slider color="color"/&gt; </code>
+                                colorpicker.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <color-slider [color]="color" (onChangeComplete)="onColorChange($event)" />
+                        </div>
+                    </div>
+
+                    <div class="my-4 border-top border-dashed"></div>
+
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-6">
+                            <h5 class="fw-semibold mb-1">Color Format</h5>
+                            <p class="text-muted mb-0">Use <code> &lt;color-twitter color="color"/&gt; </code></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <color-twitter [color]="color" (onChangeComplete)="onColorChange($event)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

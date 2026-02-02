@@ -1,0 +1,219 @@
+<div class="container-fluid">
+    <app-page-title title="File Manager" subTitle="Apps"/>
+
+    <div class="outlook-box outlook-box-full">
+        <ng-template #content>
+            <ngx-simplebar style="height: 100%">
+                <app-file-sidebar/>
+            </ngx-simplebar>
+        </ng-template>
+
+        <app-file-sidebar class="d-none d-lg-block outlook-left-menu outlook-left-menu-md"/>
+
+        <div class="card h-100 mb-0 rounded-0 flex-grow-1 border-0">
+            <div class="card-header border-light justify-content-between">
+
+                <div class="d-flex gap-2">
+                    <div class="d-lg-none d-inline-flex gap-2">
+                        <button class="btn btn-default btn-icon" (click)="openFileSidebar(content)" type="button">
+                            <ng-icon name="tablerMenu2" class="fs-lg"/>
+                        </button>
+                    </div>
+
+                    <div class="app-search">
+                        <input data-table-search type="search" class="form-control" placeholder="Search files...">
+                        <lucide-angular [img]="LucideSeach" class="app-search-icon text-muted"/>
+                    </div>
+                    @if (hasSelection) {
+                        <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+                    }
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <span class="me-2 fw-semibold">Filter By:</span>
+
+
+                    <div class="app-search">
+                        <select [(ngModel)]="fileTypeFilter"
+                                (ngModelChange)="tableService.setFilter('type', fileTypeFilter)"
+                                class="form-select form-control my-1 my-md-0">
+                            <option value="All">File Type</option>
+                            <option value="Folder">Folder</option>
+                            <option value="MySQL">MySQL</option>
+                            <option value="MP4">MP4</option>
+                            <option value="Audio">Audio</option>
+                            <option value="Figma">Figma</option>
+                        </select>
+                        <lucide-angular [img]="LucideFile" class="app-search-icon text-muted"/>
+                    </div>
+
+
+                    <div>
+                        <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="8">8</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="15">15</option>
+                            <option [ngValue]="20">20</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <ngx-simplebar style="height: calc(100% - 100px);">
+                <div class="card-body">
+                    <div class="row">
+                        @for (folder of folders; track i; let i = $index) {
+                            <div class="col-md-6 col-lg-4 col-xxl-3">
+                                <app-folder-card [item]="folder"/>
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-custom table-select mb-0">
+                            <thead class="bg-light bg-opacity-25 thead-sm border-top border-light">
+                            <tr class="text-uppercase align-middle fs-xxs">
+                                <th class="ps-3" style="width: 1%;">
+                                    <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                                           class="form-check-input form-check-input-light fs-14 mt-0"
+                                           type="checkbox" id="select-all-files" value="option">
+                                </th>
+                                <th sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">
+                                    Name
+                                </th>
+                                <th sortable="type" (sort)="tableService.setSort($event.column, $event.direction)">
+                                    Type
+                                </th>
+                                <th sortable="modified" (sort)="tableService.setSort($event.column, $event.direction)">
+                                    Modified
+                                </th>
+                                <th sortable="email" (sort)="tableService.setSort($event.column, $event.direction)"
+                                    class="w-auto">Owner
+                                </th>
+                                <th class="w-auto">Shared with</th>
+                                <th class="text-end pe-3">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @if ((total$ | async)! > 0) {
+                                    @for (file of records$ | async; track i; let i = $index) {
+                                        <tr>
+                                            <td class="ps-3">
+                                                <input
+                                                    class="form-check-input form-check-input-light fs-14 file-item-check"
+                                                    type="checkbox" value="option" [(ngModel)]="file.selected"
+                                                    (change)="toggleSingleSelection()">
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div
+                                                        class="flex-shrink-0 avatar-md bg-light bg-opacity-50 text-muted rounded-2 d-flex align-items-center justify-content-center">
+                                                        <ng-icon [name]="file.icon" class="fs-xl avatar-title"/>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="mb-1 fs-base">
+                                                            <a [routerLink]="[]" class="link-reset">{{ file.name }}</a>
+                                                        </h5>
+                                                        <p class="text-muted mb-0 fs-xs">{{ formatFileSize(file.size) }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ file.type }}</td>
+                                            <td>{{ file.modified | date:'mediumDate' }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div
+                                                        class="flex-shrink-0 bg-light bg-opacity-50 text-muted d-inline-flex align-items-center justify-content-center rounded-2">
+                                                        <img [src]="file.avatar" alt=""
+                                                             class="avatar-xs rounded-circle">
+                                                    </div>
+                                                    <h5 class="mb-0 fs-base">
+                                                        <a [routerLink]="[]" class="link-reset">{{ file.email }}</a>
+                                                    </h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="avatar-group avatar-group-xs">
+                                                    @for (user of file.users; track i; let i = $index) {
+                                                        <div class="avatar">
+                                                            <img [src]="user" alt="" class="rounded-circle avatar-xs">
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td class="text-end pe-3">
+                                                <div class="d-flex align-items-center justify-content-end gap-2">
+                                        <span (click)="file.isFavorite = !file.isFavorite">
+                                            @if (file.isFavorite) {
+                                                <a href="javascript:void(0);">
+                                                 <ng-icon name="tablerStarFill" class="text-warning fs-lg"/>
+                                                </a>
+                                            } @else {
+                                                <a href="javascript:void(0);">
+                                                  <ng-icon name="tablerStarFill" class="text-muted fs-lg"/>
+                                                </a>
+                                            }
+                                      </span>
+                                                    <div ngbDropdown class="flex-shrink-0 text-muted">
+                                                        <a href="javascript:void(0)" ngbDropdownToggle
+                                                           class="drop-arrow-none fs-xxl link-reset p-0">
+                                                            <ng-icon name="tablerDotsVertical"/>
+                                                        </a>
+                                                        <div ngbDropdownMenu class="dropdown-menu-end">
+                                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                                <ng-icon
+                                                                    name="tablerShare" class="me-1"/>
+                                                                Share</a>
+                                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                                <ng-icon
+                                                                    name="tablerLink" class="me-1"/>
+                                                                Get Sharable Link</a>
+                                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                                <ng-icon name="tablerDownload" class="me-1"/>
+                                                                Download
+                                                            </a>
+                                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                                <ng-icon
+                                                                    name="tablerPin" class="me-1"/>
+                                                                Pin</a>
+                                                            <a href="javascript:void(0);" ngbDropdownItem>
+                                                                <ng-icon
+                                                                    name="tablerEdit" class="me-1"/>
+                                                                Edit</a>
+                                                            <a href="javascript:void(0)"
+                                                               (click)="tableService.deleteItem(file)"
+                                                               ngbDropdownItem>
+                                                                <ng-icon
+                                                                    name="tablerTrash" class="me-1"/>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                } @else {
+                                    <tr class="no-results">
+                                        <td colspan="11" class="text-center text-muted py-3">Nothing found.</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center gap-2 p-3">
+                        <strong>Loading...</strong>
+                        <div class="spinner-border spinner-border-sm text-danger" role="status"
+                             aria-hidden="true"></div>
+                    </div>
+
+                </div>
+            </ngx-simplebar>
+
+        </div>
+    </div>
+
+</div>

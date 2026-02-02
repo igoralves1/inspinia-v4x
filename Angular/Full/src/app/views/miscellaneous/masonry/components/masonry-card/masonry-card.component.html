@@ -1,0 +1,58 @@
+<article class="card bg-{{item.variant}} {{item.variant ? 'bg-gradient' : ''}}">
+
+    @if (item.image) {
+        <img class="card-img-top" [src]="item.image" alt="SEO Strategies">
+    }
+
+    @if (item.title) {
+        <div class="card-body">
+            @if (item.category) {
+                <div
+                    class="badge badge-label  {{item.variant ? 'mb-3 bg-opacity-25 bg-white' : 'position-absolute top-0 start-0 m-3 text-bg-dark'}}">
+                    {{ item.category }}
+                </div>
+            }
+            <h6 class="card-title fs-lg lh-base mb-2">
+                <a routerLink="/article" [class]="item.variant ? 'text-white' : 'link-reset'">{{ item.title }}</a>
+            </h6>
+            <p class="mb-3" [class]="item.variant ? 'text-white-50' : 'text-muted'">
+                {{ item.description }}
+            </p>
+
+            <div>
+                @for (tag of item.tags; track $index) {
+                    <a href="javascript:void(0)" class="badge badge-label badge-default me-1">{{ tag }}</a>
+                }
+            </div>
+
+            <p class="d-flex flex-wrap gap-3  mb-0 mt-3 align-items-center fs-base"
+               [class]="item.variant ? 'text-white-50' : 'text-muted'">
+            <span class="d-flex align-items-center gap-1"><ng-icon name="tablerCalendar" class="fs-md"/>
+                {{ item.date }}</span>
+                <span class="d-flex align-items-center gap-1"><ng-icon name="tablerMessageCircle"
+                                                                       class="fs-md"></ng-icon> <a href="javascript:void(0)"
+                                                                                                   class="link-reset">{{ item.comments }}</a></span>
+                <span class="d-flex align-items-center gap-1"><ng-icon name="tablerEye" class="fs-md"></ng-icon>
+                    {{ item.views }}</span>
+            </p>
+        </div>
+    }
+
+    <div
+        class="card-footer bg-transparent d-flex justify-content-between {{item.variant ? 'border-light border-opacity-25' : ''}}">
+        <div class="d-flex justify-content-start align-items-center gap-2">
+            <div class="avatar avatar-xs">
+                <img src={{item.user.avatar}} alt="avatar-2" class="img-fluid rounded-circle">
+            </div>
+            <div>
+                <h5 class="text-nowrap fs-sm mb-0 lh-base">
+                    <a href="javascript:void(0)" [class]="item.variant ? 'text-white' : 'link-reset'">{{ item.user.name }}</a>
+                </h5>
+            </div>
+        </div>
+        <a class="fw-semibold d-flex align-items-center flex-wrap gap-1"
+           [class]="item.variant ? 'text-white' : 'link-primary'" routerLink="/article">Read more
+            <ng-icon name="tablerArrowRight"/>
+        </a>
+    </div>
+</article>

@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <app-page-title title="Column Apexchart" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Column Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="basicColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Column Chart with Datalabels">
+                <div card-body>
+                    <app-apexchart [getOptions]="datalabelsColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Stacked Column Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="stackedColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="100% Stacked Column Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="fullStackedColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Grouped Stacked Columns Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="groupedStackedColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Dumbbell Chart">
+                <div card-body>
+                    <app-apexchart [getOptions]="dumbbellChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Column with Markers">
+                <div card-body>
+                    <app-apexchart [getOptions]="columnWithMarkersChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Column with Group Label">
+                <div card-body>
+                    <app-apexchart [getOptions]="columnWithGroupLabelChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Column Chart with rotated labels & Annotations">
+                <div card-body>
+                    <app-apexchart [getOptions]="rotateLabelsColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Column Chart with negative values">
+                <div card-body>
+                    <app-apexchart [getOptions]="negativeValueColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Distributed Column Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="distributedColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Range Column Charts">
+                <div card-body>
+                    <app-apexchart [getOptions]="rangeColumnChart"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-13">
+            <apex-dynamic-loaded-chart/>
+        </div>
+    </div>
+</div>

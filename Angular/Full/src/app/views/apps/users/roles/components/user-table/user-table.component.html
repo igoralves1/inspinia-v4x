@@ -1,0 +1,152 @@
+<div data-table data-table-rows-per-page="8" class="card">
+    <div class="card-header border-light justify-content-between">
+
+        <div class="d-flex gap-2">
+            <div class="app-search">
+                <input [(ngModel)]="tableService.searchTerm" type="search" class="form-control"
+                       placeholder="Search users...">
+                <lucide-angular [img]="LucideSearch" class="app-search-icon text-muted"/>
+            </div>
+            @if (hasSelection) {
+                <button class="btn btn-danger" (click)="deleteSelected()">Delete</button>
+            }
+        </div>
+
+
+        <div class="d-flex align-items-center gap-2">
+            <span class="me-2 fw-semibold">Filter By:</span>
+
+            <div class="app-search">
+                <select [(ngModel)]="filterRole" (ngModelChange)="tableService.setFilter('role', filterRole)"
+                        class="form-select form-control my-1 my-md-0">
+                    <option value="All">Role</option>
+                    <option value="Security Officer">Security Officer</option>
+                    <option value="Project Manager">Project Manager</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Support Lead">Support Lead</option>
+                </select>
+                <lucide-angular [img]="LucideShield" class="app-search-icon text-muted"/>
+            </div>
+
+            <div class="app-search">
+                <select [(ngModel)]="filterStatus" (ngModelChange)="tableService.setFilter('status', filterStatus)"
+                        class="form-select form-control my-1 my-md-0">
+                    <option value="All">Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Suspended">Suspended</option>
+                </select>
+                <lucide-angular [img]="LucideUserCheck" class="app-search-icon text-muted"/>
+            </div>
+
+            <div>
+                <select [(ngModel)]="tableService.pageSize" class="form-select form-control my-1 my-md-0">
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="8">8</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="15">15</option>
+                    <option [ngValue]="20">20</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Add User</button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+            <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+            <tr class="text-uppercase fs-xxs">
+                <th class="ps-3" style="width: 1%;">
+                    <input [(ngModel)]="selectAll" (change)="toggleAllSelection()"
+                           class="form-check-input form-check-input-light fs-14 mt-0"
+                           type="checkbox" value="option">
+                </th>
+                <th sortable="id" (sort)="tableService.setSort($event.column, $event.direction)">ID</th>
+                <th sortable="name" (sort)="tableService.setSort($event.column, $event.direction)">User</th>
+                <th sortable="role" (sort)="tableService.setSort($event.column, $event.direction)">Role</th>
+                <th sortable="date" (sort)="tableService.setSort($event.column, $event.direction)">Last Updated</th>
+                <th sortable="status" (sort)="tableService.setSort($event.column, $event.direction)">Status</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                @if ((total$ | async)! > 0) {
+                    @for ( user of users$ | async; track user.id) {
+                    <tr>
+                        <td class="ps-3"><input class="form-check-input form-check-input-light fs-14 file-item-check mt-0"
+                                                type="checkbox" value="option" [(ngModel)]="user.selected"
+                                                (change)="toggleSingleSelection()"></td>
+                        <td>
+                            <h5 class="m-0">
+                                <a [routerLink]="[]" class="link-reset">{{ user.id }}</a>
+                            </h5>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="avatar avatar-sm"><img [src]="user.avatar" class="img-fluid rounded-circle"
+                                                                   alt="">
+                                </div>
+                                <div>
+                                    <h5 class="fs-base mb-0">{{ user.name }}</h5>
+                                    <p class="text-muted fs-xs mb-0">{{ user.email }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ user.role }}</td>
+                        <td>{{ user.date }} <small class="text-muted">{{ user.time }}</small></td>
+                        <td>
+                    <span class="badge badge-label" [class]="
+                                  user.status === 'inactive' ? 'bg-warning-subtle text-warning' :
+                                  user.status === 'active' ? 'bg-success-subtle text-success' :
+                                  user.status === 'suspended' ? 'bg-danger-subtle text-danger' : ''
+                                ">
+                              {{ toTitleCase(user.status) }}
+                    </span>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-1">
+                                <a href="javascript:void(0)" class="btn btn-light btn-icon btn-sm rounded-circle">
+                                    <ng-icon name="tablerEye" class="fs-lg"/>
+                                </a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-icon btn-sm rounded-circle">
+                                    <ng-icon
+                                        name="tablerEdit" class="fs-lg"/>
+                                </a>
+                                <a href="javascript:void(0)" (click)="tableService.deleteItem(user)"
+                                   class="btn btn-light btn-icon btn-sm rounded-circle">
+                                    <ng-icon
+                                        name="tablerTrash" class="fs-lg"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                } @else {
+                    <tr class="no-results">
+                        <td colspan="7" class="text-center text-muted py-3">Nothing found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer border-0">
+        @if ((total$ | async)! > 0) {
+        <div  class="d-flex justify-content-between pagination-boxed align-items-center">
+            {{ tableService.showingRange }} roles
+            <ngb-pagination
+                [collectionSize]="(total$ | async)!"
+                [(page)]="tableService.page"
+                [pageSize]="tableService.pageSize"
+            >
+                <ng-template ngbPaginationPrevious>
+                    <ng-icon name="tablerChevronLeft"/>
+                </ng-template>
+                <ng-template ngbPaginationNext>
+                    <ng-icon name="tablerChevronRight"/>
+                </ng-template>
+            </ngb-pagination>
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="container-fluid">
+    <app-page-title subTitle="Miscellaneous" title="SweetAlert2" />
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <app-ui-card title="Examples">
+                <div card-body class="table-responsive-sm" >
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Basic</h5>
+                                    <p class="text-muted mb-0">Displays a simple SweetAlert popup.</p>
+                                </td>
+                                <td>
+                                    <button
+                                        (click)="showAlert({ title: 'Simple Alert', text: 'This is a basic SweetAlert dialog.' })"
+                                        type="button" class="btn btn-sm btn-primary" id="sweetalert-basic">Click
+                                        me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Title</h5>
+                                    <p class="text-muted mb-0">A popup with a title and supporting text.</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        (click)="showAlert({ title: 'Notice', text: 'This is a titled alert with additional details.', icon: 'question', showCloseButton: true })">Click
+                                        Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">HTML</h5>
+                                    <p class="text-muted mb-0">Shows a popup with custom HTML content.</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        (click)="showAlert({ title: '<i>HTML</i> <u>Alert</u>', html: 'Use <b>bold</b>, <a href=\'#\'>links</a>, and other HTML here.', icon: 'info', showCloseButton: true, showCancelButton: true, confirmButtonText: `${thumbUp} Like it!`, cancelButtonText: thumbDown, customClass: { confirmButton: 'btn btn-success me-2', cancelButton: 'btn btn-danger' } })">Toggle
+                                        HTML SweetAlert</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">All States</h5>
+                                    <p class="text-muted mb-0">Examples of SweetAlert in different alert states.</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button type="button"
+                                            (click)="showAlert({ text: 'This is an informational message.', icon: 'info', confirmButtonText: 'Understood', customClass: { confirmButton: 'btn btn-info' } })"
+                                            class="btn btn-sm btn-info">Toggle Info</button>
+                                        <button type="button"
+                                            (click)="showAlert({ text: 'Heads up! Something might require your attention.', icon: 'warning', confirmButtonText: 'Got it', customClass: { confirmButton: 'btn btn-warning' } })"
+                                            class="btn btn-sm btn-warning">Toggle Warning</button>
+                                        <button type="button"
+                                            (click)="showAlert({ text: 'An unexpected error occurred.', icon: 'error', confirmButtonText: 'Dismiss', customClass: { confirmButton: 'btn btn-danger' } })"
+                                            class="btn btn-sm btn-danger">Toggle Error</button>
+                                        <button type="button"
+                                            (click)="showAlert({ text: 'Action completed successfully!', icon: 'success', confirmButtonText: 'Great!', customClass: { confirmButton: 'btn btn-success' } })"
+                                            class="btn btn-sm btn-success">Toggle Success</button>
+                                        <button type="button"
+                                            (click)="showAlert({ text: 'Need more info?', icon: 'question', confirmButtonText: 'Yes, please' })"
+                                            class="btn btn-sm btn-primary">Toggle Question</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Long Content</h5>
+                                    <p class="text-muted mb-0">A popup with extended content for demonstration.</p>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        (click)="showAlert({ imageUrl: 'https://placehold.co/300x1000/1ab394/white', imageHeight: 1000, imageAlt: 'Very tall content image', showCloseButton: true })"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">With Confirm Button</h5>
+                                    <p class="text-muted mb-0">A confirmation dialog with an attached action.</p>
+                                </td>
+                                <td>
+                                    <button type="button" (click)="onConfirmAlert()"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">With Cancel Button</h5>
+                                    <p class="text-muted mb-0">Includes cancel and confirm options with different
+                                        actions.</p>
+                                </td>
+                                <td>
+                                    <button type="button" (click)="onCancelAlert()"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">With Image Header (Logo)</h5>
+                                    <p class="text-muted mb-0">Custom popup with a logo or image header.</p>
+                                </td>
+                                <td>
+                                    <button type="button" (click)="onImageAlert()"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Auto Close</h5>
+                                    <p class="text-muted mb-0">Displays a popup that closes automatically after a
+                                        timeout.</p>
+                                </td>
+                                <td>
+                                    <button type="button" (click)="onAutoCloseAlert()"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Position</h5>
+                                    <p class="text-muted mb-0">Shows the alert in different screen positions.</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="bindPositionalAlert('top-start')">Top
+                                            Start</button>
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="bindPositionalAlert('top-end')">Top
+                                            End</button>
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="bindPositionalAlert('bottom-start')">Bottom
+                                            Start</button>
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="bindPositionalAlert('bottom-end')">Bottom
+                                            End</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">With Custom Padding, Background</h5>
+                                    <p class="text-muted mb-0">Popup with custom dimensions, padding, and background
+                                        style.</p>
+                                </td>
+                                <td>
+                                    <button type="button" id="custom-padding-width-alert"
+                                        class="btn btn-sm btn-secondary">Click Me</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="mb-1">Ajax Request</h5>
+                                    <p class="text-muted mb-0">Demonstrates an alert with an Ajax request.</p>
+                                </td>
+                                <td>
+                                    <button type="button" (click)="onAjaxAlert()" class="btn btn-sm btn-secondary">Click
+                                        Me</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </app-ui-card>
+
+        </div>
+    </div>
+
+</div>

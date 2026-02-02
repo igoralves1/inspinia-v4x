@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <app-page-title title="Add Product" subTitle="Ecommerce"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <div class="row">
+                <div class="col-xxl-8">
+                    <app-product-information-form/>
+
+                    <app-product-image/>
+
+                </div>
+
+                <div class="col-xxl-4">
+                    <app-product-pricing-form/>
+
+                    <app-product-organize-form/>
+
+                </div>
+
+            </div>
+
+            <div class="mt-2 mb-4 d-flex gap-2 justify-content-center">
+                <button class="btn btn-link text-danger fw-semibold">
+                    <lucide-angular [img]="LucideClipboardX" class="fs-sm me-2"/>
+                    Discard
+                </button>
+                <button class="btn btn-soft-purple">
+                    <lucide-angular [img]="LucideSave" class="fs-sm me-2"/>
+                    Save as Draft
+                </button>
+                <button class="btn btn-success">
+                    <lucide-angular [img]="LucidePlus" class="fs-sm me-2"/>
+                    Publish
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

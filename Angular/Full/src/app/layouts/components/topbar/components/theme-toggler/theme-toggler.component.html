@@ -1,0 +1,10 @@
+<div class="topbar-item d-none d-sm-flex">
+    <button (click)="toggleTheme()" class="topbar-link" type="button">
+        @if (layout.theme === 'light') {
+            <lucide-icon [img]="Moon" class="fs-xxl mode-light-moon"/>
+        }
+        @if (layout.theme === 'dark') {
+            <lucide-icon [img]="Sun" class="fs-xxl mode-light-sun"/>
+        }
+    </button>
+</div>

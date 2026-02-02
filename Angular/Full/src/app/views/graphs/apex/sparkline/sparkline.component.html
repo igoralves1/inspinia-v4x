@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <app-page-title title="Sparkline Apexcharts" subTitle="Charts"/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row g-3" dir="ltr">
+                        <div class="col-md-4">
+                            <app-apexchart [getOptions]="spark1Options"></app-apexchart>
+                        </div>
+                        <div class="col-md-4">
+                            <app-apexchart [getOptions]="spark2Options"></app-apexchart>
+                        </div>
+                        <div class="col-md-4">
+                            <app-apexchart [getOptions]="spark3Options"></app-apexchart>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-centered table-custom mb-0">
+                                <thead class="bg-light bg-opacity-50 fs-xxs thead-sm text-uppercase">
+                                <tr>
+                                    <th>Total Value</th>
+                                    <th>Percentage of Portfolio</th>
+                                    <th>Last 10 days</th>
+                                    <th>Volume</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @for (row of tableChartData; track $index) {
+                                        <tr>
+                                            <td>{{ row.total }}</td>
+                                            <td>{{ row.percent }}</td>
+                                            <td>
+                                                <app-apexchart [getOptions]="row.last10Options"></app-apexchart>
+                                            </td>
+                                            <td>
+                                                <app-apexchart [getOptions]="row.volumeOptions"></app-apexchart>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

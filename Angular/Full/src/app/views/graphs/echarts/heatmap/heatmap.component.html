@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <app-page-title title="Heatmap Echart" subTitle="Charts"/>
+    <div class="row">
+        <div class="col-xl-6">
+            <app-ui-card title="Basic Heatmap Chart">
+                <div card-body>
+                    <app-echart [getOptions]="basicHeatmapChart" height="300px"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Heatmap Chart">
+                <div card-body>
+                    <app-echart [getOptions]="heatMapChart" height="300px"/>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Heatmap - 20K Data Chart">
+                <div card-body>
+                    <app-echart [getOptions]="heatMapDataChart" height="300px"/>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+</div>

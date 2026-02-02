@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <app-page-title title="Popovers" subTitle="UI"/>
+</div>
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-12">
+            <app-ui-card title="Examples">
+                <div card-body>
+                    <p class="text-muted mb-2">
+                        Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any
+                        element on
+                        your site.
+                    </p>
+
+                    <a class="btn btn-link p-0 fw-semibold"
+                       href="https://getbootstrap.com/docs/5.3/components/popovers/"
+                       target="_blank">
+                        Popovers on Bootstrap
+                        <ng-icon name="tablerChevronRight" class="ms-1"/>
+                    </a>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Simple Popover">
+                <div card-body>
+                    <button type="button" class="btn btn-info" popoverTitle="Need Help?" placement="right"
+                            ngbPopover="Click here to get support from our team. We're here 24/7 to assist you.">
+                        Get Support Info
+                    </button>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Dismiss on Next Click">
+                <div card-body>
+                    <button type="button" tabindex="0" autoClose="inside" triggers="focus" class="btn btn-primary"
+                            placement="right"
+                            ngbPopover="Get quick tips and tricks to improve your workflow instantly."
+                            popoverTitle="Quick Tips">
+                        Show Tips
+                    </button>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Hover">
+                <div card-body>
+                    <button type="button" tabindex="0" class="btn btn-dark" placement="right"
+                            triggers="hover"
+                            ngbPopover="Discover features you didn’t know existed. Hover to explore more!"
+                            popoverTitle="Exciting Features!">
+                        Please Hover Me
+                    </button>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Four Directions">
+                <div class="d-flex flex-wrap gap-2" card-body>
+                    <button type="button" class="btn btn-primary" placement="top"
+                            popoverTitle="Top Popover"
+                            ngbPopover="This popover appears above the button. Great for tips or info.">
+                        Popover on top
+                    </button>
+
+                    <button type="button" class="btn btn-primary"
+                            placement="bottom" popoverTitle="Bottom Popover"
+                            ngbPopover="This popover shows below. Perfect for additional details.">
+                        Popover on bottom
+                    </button>
+
+                    <button type="button" class="btn btn-primary" placement="right"
+                            popoverTitle="Right Popover"
+                            ngbPopover="Slide in from the right to provide quick insights.">
+                        Popover on right
+                    </button>
+
+                    <button type="button" class="btn btn-primary" placement="left"
+                            popoverTitle="Left Popover"
+                            ngbPopover="Appears on the left side. Great for tooltips or notes.">
+                        Popover on left
+                    </button>
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Custom Popovers">
+                <div class="d-flex flex-wrap gap-2" card-body>
+                    @for (variant of popoverVariants; track $index) {
+                        <button type="button" class="btn btn-{{variant}}"
+                                placement="right" autoClose="inside"
+                                popoverClass="popover-{{variant}}" popoverTitle="{{toTitleCase(variant)}} Popover"
+                                ngbPopover="This is a {{variant}}-themed popover styled using CSS variables.">
+                            {{ toTitleCase(variant) }} Popover
+                        </button>
+                    }
+                </div>
+            </app-ui-card>
+        </div>
+
+        <div class="col-xl-6">
+            <app-ui-card title="Disabled Elements">
+       <span class="d-inline-block" placement="top"
+             ngbPopover="This button is disabled, but the popover still works." card-body>
+                  <button class="btn btn-primary" type="button" disabled
+                          style="pointer-events: none;">
+                     Disabled Button
+                 </button>
+       </span>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>
